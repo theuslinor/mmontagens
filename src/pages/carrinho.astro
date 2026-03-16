@@ -12,6 +12,17 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script is:inline>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+                    colors: { mm: { blue: '#1489c8', darkblue: '#0d5d9c', yellow: '#fbc02d' } }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-[#f4f7f6]">
 
@@ -90,19 +101,12 @@
 
     </section>
 
+    <script src="/carrinho.js" is:inline></script>
+
     <script is:inline>
-        const CHAVE_CARRINHO = "mm_montagens_carrinho";
-
-        function getCarrinhoLocal() {
-            return JSON.parse(localStorage.getItem(CHAVE_CARRINHO)) || [];
-        }
-
-        function salvarCarrinhoLocal(itens) {
-            localStorage.setItem(CHAVE_CARRINHO, JSON.stringify(itens));
-        }
-
         function renderizarPaginaCarrinho() {
-            const itens = getCarrinhoLocal();
+            // getCarrinho() vem do carrinho.js
+            const itens = typeof getCarrinho === 'function' ? getCarrinho() : JSON.parse(localStorage.getItem("mm_montagens_carrinho")) || [];
             
             const container = document.getElementById('lista-carrinho');
             const areaConteudo = document.getElementById('carrinho-conteudo');
@@ -124,11 +128,12 @@
             let totalPecas = 0;
 
             itens.forEach((item, index) => {
-                totalPecas += item.qtd;
+                // Sincronizado para usar .qty
+                const quantidade = parseInt(item.qty) || 0;
+                totalPecas += quantidade;
                 
-                // Limpeza brutal do caminho da imagem (pra evitar lixo do HTML antigo)
                 let imagemCorrigida = item.img;
-                if(imagemCorrigida.includes("midia/")) {
+                if(imagemCorrigida && imagemCorrigida.includes("midia/")) {
                     imagemCorrigida = "/midia/" + imagemCorrigida.split("midia/")[1];
                 }
                 
@@ -149,7 +154,7 @@
                                 <button onclick="alterarQtd(${index}, -1)" class="w-10 h-10 text-gray-500 hover:bg-gray-100 hover:text-mm-blue transition focus:outline-none flex items-center justify-center border-r border-gray-300">
                                     <i class="fas fa-minus text-xs"></i>
                                 </button>
-                                <input type="number" min="1" value="${item.qtd}" onchange="atualizarInputManual(${index}, this.value)" class="w-16 h-10 text-center font-bold text-gray-700 outline-none focus:ring-2 focus:ring-mm-blue appearance-none m-0 p-0">
+                                <input type="number" min="1" value="${quantidade}" onchange="atualizarInputManual(${index}, this.value)" class="w-16 h-10 text-center font-bold text-gray-700 outline-none focus:ring-2 focus:ring-mm-blue appearance-none m-0 p-0">
                                 <button onclick="alterarQtd(${index}, 1)" class="w-10 h-10 text-gray-500 hover:bg-gray-100 hover:text-mm-blue transition focus:outline-none flex items-center justify-center border-l border-gray-300">
                                     <i class="fas fa-plus text-xs"></i>
                                 </button>
@@ -170,49 +175,50 @@
         }
 
         function alterarQtd(index, valor) {
-            let itens = getCarrinhoLocal();
-            let novaQtd = itens[index].qtd + valor;
+            let itens = getCarrinho();
+            let novaQtd = (parseInt(itens[index].qty) || 1) + valor;
             
             if (novaQtd >= 1) {
-                itens[index].qtd = novaQtd;
-                salvarCarrinhoLocal(itens);
+                itens[index].qty = novaQtd;
+                salvarCarrinho(itens); // salvarCarrinho() vem do carrinho.js
                 renderizarPaginaCarrinho();
             }
         }
 
         function atualizarInputManual(index, valor) {
-            let itens = getCarrinhoLocal();
+            let itens = getCarrinho();
             let novaQtd = parseInt(valor);
             
             if (novaQtd >= 1) {
-                itens[index].qtd = novaQtd;
+                itens[index].qty = novaQtd;
             } else {
-                itens[index].qtd = 1;
+                itens[index].qty = 1;
             }
-            salvarCarrinhoLocal(itens);
+            salvarCarrinho(itens);
             renderizarPaginaCarrinho();
         }
 
         function removerItem(index) {
-            let itens = getCarrinhoLocal();
+            let itens = getCarrinho();
             itens.splice(index, 1);
-            salvarCarrinhoLocal(itens);
+            salvarCarrinho(itens);
             renderizarPaginaCarrinho();
         }
 
         function limparCarrinho() {
             if(confirm("Tem certeza que deseja esvaziar seu orçamento?")) {
-                localStorage.removeItem(CHAVE_CARRINHO);
+                localStorage.removeItem("mm_montagens_carrinho");
                 renderizarPaginaCarrinho();
+                if(typeof atualizarIcones === 'function') atualizarIcones();
             }
         }
 
         function enviarParaWhatsApp() {
-            const itens = getCarrinhoLocal();
+            const itens = getCarrinho();
             let texto = "Olá, MM Montagens! Gostaria de um orçamento para os seguintes itens:%0A%0A";
             
             itens.forEach(i => { 
-                texto += `📦 *${i.qtd}x* - ${i.nome} (Cód: ${i.codigo})%0A`; 
+                texto += `📦 *${i.qty}x* - ${i.nome} (Cód: ${i.codigo})%0A`; 
             });
             
             texto += "%0A*Aguardamos o retorno com os valores e prazos de entrega.*";

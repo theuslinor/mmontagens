@@ -5,46 +5,62 @@ function getCarrinho() {
     return JSON.parse(localStorage.getItem(CHAVE_CARRINHO)) || [];
 }
 
-// Função para salvar os itens
+// Função para salvar os itens e atualizar a tela
 function salvarCarrinho(itens) {
     localStorage.setItem(CHAVE_CARRINHO, JSON.stringify(itens));
-    atualizarIcones();
+    atualizarIcones(); // Chama a função correta aqui
 }
 
 // Função para adicionar um produto
-function adicionarAoCarrinho(id, nome, codigo, imgId, inputQtdId) {
-    const inputQtd = document.getElementById(inputQtdId);
-    const qtd = parseInt(inputQtd.value);
+function adicionarAoCarrinho(id, nome, codigo, imgId, qtyId) {
+    const qtyInput = document.getElementById(qtyId);
+    const qty = parseInt(qtyInput.value) || 1;
+    const imgElement = document.getElementById(imgId);
+    const img = imgElement ? imgElement.src : "";
 
-    if (!qtd || qtd <= 0) {
-        alert("Por favor, informe uma quantidade válida.");
-        return;
-    }
-
-    const imgPath = document.getElementById(imgId).src;
-    const carrinho = getCarrinho();
+    let carrinho = getCarrinho(); // Usando a função que já criamos
     
-    // Verifica se o produto já está no carrinho
-    const produtoExistente = carrinho.find(item => item.id === id);
-
-    if (produtoExistente) {
-        produtoExistente.qtd += qtd; // Soma a quantidade
+    const index = carrinho.findIndex(item => item.codigo === codigo);
+    if (index > -1) {
+        carrinho[index].qty += qty;
     } else {
-        carrinho.push({ id, nome, codigo, qtd, img: imgPath }); // Adiciona novo
+        carrinho.push({ id, nome, codigo, img, qty });
     }
 
+    // Salva e já atualiza os ícones automaticamente
     salvarCarrinho(carrinho);
-    inputQtd.value = ""; // Limpa o campo após adicionar
     
-    alert("Produto adicionado ao carrinho!");
+    // --- ANIMAÇÃO DO CARRINHO ---
+    
+    // Faz o ícone do carrinho pular (no Desktop e no Mobile)
+    const iconesCarrinho = document.querySelectorAll('.fa-shopping-cart');
+    iconesCarrinho.forEach(icone => {
+        icone.classList.add('animate-bounce-cart', 'text-mm-yellow');
+        
+        setTimeout(() => {
+            icone.classList.remove('animate-bounce-cart', 'text-mm-yellow');
+        }, 400);
+    });
+
+    // Feedback visual no botão que foi clicado
+    // Nota: o 'event' aqui funciona se o onclick estiver no HTML
+    const botaoClicado = event.currentTarget;
+    const textoOriginal = botaoClicado.innerHTML;
+    botaoClicado.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
+    botaoClicado.classList.replace('bg-[#25D366]', 'bg-blue-600');
+    
+    setTimeout(() => {
+        botaoClicado.innerHTML = textoOriginal;
+        botaoClicado.classList.replace('bg-blue-600', 'bg-[#25D366]');
+    }, 1500);
 }
 
 // Atualiza a bolinha do menu e mostra/esconde o botão flutuante
 function atualizarIcones() {
     const carrinho = getCarrinho();
-    const totalProdutosDiferentes = carrinho.length; // Conta quantos produtos únicos existem
+    const totalProdutosDiferentes = carrinho.length; 
 
-    // 1. Atualiza a bolinha do Header
+    // 1. Atualiza a bolinha (badge) de todos os lugares
     const bolinhasHeader = document.querySelectorAll('.badge-carrinho');
     bolinhasHeader.forEach(bolinha => {
         if (totalProdutosDiferentes > 0) {
@@ -68,5 +84,5 @@ function atualizarIcones() {
     }
 }
 
-// Executa a atualização visual assim que a página carrega
+// Inicializa a bagaça
 window.addEventListener('DOMContentLoaded', atualizarIcones);

@@ -13,31 +13,96 @@ const { title } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    </head>
+    <script src="https://cdn.tailwindcss.com" is:inline></script>
+    <script is:inline>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        condensed: ['Oswald', 'sans-serif'],
+                    },
+                    colors: {
+                        mm: {
+                            blue: '#1489c8',
+                            cyan: '#19a1cd',
+                            darkblue: '#0d5d9c',
+                            yellow: '#fbc02d',
+                            footer: '#1a1a1a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style is:global>
+        @keyframes cart-bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+        }
+
+        .animate-bounce-cart {
+            animation: cart-bounce 0.4s ease-in-out;
+        }
+
+        /* Corte diagonal da seção de Orçamento (Quem Somos) */
+        .clip-slant {
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+        }
+    </style>
+</head>
+
 <body class="font-sans antialiased text-gray-800 bg-white overflow-x-hidden">
 
-    <header class="w-full bg-white h-[100px] flex items-center justify-between px-8 lg:px-24 shadow-sm relative z-50">
+    <header class="w-full bg-white h-[90px] md:h-[100px] flex items-center justify-between px-6 lg:px-24 shadow-sm relative z-[100]">
         <a href="/" class="flex items-center justify-center transition hover:scale-105">
-            <img src="/midia/logo4.png" alt="MM Montagens" class="w-[160px] h-auto object-contain">
+            <img src="/midia/logo4.png" alt="MM Montagens" class="w-[130px] md:w-[160px] h-auto object-contain">
         </a>
 
         <nav class="hidden md:flex items-center gap-8 text-[14px] font-semibold">
             <a href="/" class="text-[#3aa4de] hover:text-mm-blue transition">Home</a>
             <a href="/quem-somos" class="text-[#3aa4de] hover:text-mm-blue transition">Quem Somos</a>
-            <a href="/produtos" class="text-[#3aa4de] hover:text-mm-blue transition flex items-center gap-1">
-                Produtos <></i>
-            </a>
+            <a href="/produtos" class="text-[#3aa4de] hover:text-mm-blue transition">Produtos</a>
             <a href="/galeria" class="text-[#3aa4de] hover:text-mm-blue transition">Galeria</a>
             <a href="/blog" class="text-[#3aa4de] hover:text-mm-blue transition">Blog</a>
             <a href="/contato" class="text-[#3aa4de] hover:text-mm-blue transition">Contato</a>
+            
             <a href="/carrinho" class="relative text-mm-blue hover:text-mm-darkblue transition ml-4 text-xl flex items-center">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="badge-carrinho absolute -top-2 -right-3 bg-mm-yellow text-gray-900 text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
             </a>
         </nav>
+
+        <div class="flex md:hidden items-center gap-5">
+            <a href="/carrinho" class="relative text-mm-blue text-2xl flex items-center">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge-carrinho absolute -top-2 -right-3 bg-mm-yellow text-gray-900 text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+            </a>
+            
+            <button id="menu-toggle" class="text-mm-blue text-3xl focus:outline-none" aria-label="Abrir Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
     </header>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-mm-darkblue z-[150] flex flex-col items-center justify-center gap-8 transition-all duration-300 translate-x-full opacity-0 pointer-events-none">
+        <button id="menu-close" class="absolute top-8 right-8 text-white text-4xl">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <nav class="flex flex-col items-center gap-6">
+            <a href="/" class="text-white text-2xl font-bold hover:text-mm-yellow transition">Home</a>
+            <a href="/quem-somos" class="text-white text-2xl font-bold hover:text-mm-yellow transition">Quem Somos</a>
+            <a href="/produtos" class="text-white text-2xl font-bold hover:text-mm-yellow transition">Produtos</a>
+            <a href="/galeria" class="text-white text-2xl font-bold hover:text-mm-yellow transition">Galeria</a>
+            <a href="/blog" class="text-white text-2xl font-bold hover:text-mm-yellow transition">Blog</a>
+            <a href="/contato" class="text-white text-2xl font-bold hover:text-mm-yellow transition">Contato</a>
+        </nav>
+    </div>
 
     <main>
         <slot />
@@ -106,6 +171,30 @@ const { title } = Astro.props;
         </i>
     </a>
 
+    <script is:inline>
+        // Lógica do Menu Mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.contains('translate-x-0');
+            if (isOpen) {
+                mobileMenu.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+                mobileMenu.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+            } else {
+                mobileMenu.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
+            }
+        }
+
+        menuToggle?.addEventListener('click', toggleMenu);
+        menuClose?.addEventListener('click', toggleMenu);
+
+        const navLinks = mobileMenu?.querySelectorAll('a');
+        navLinks?.forEach(link => link.addEventListener('click', toggleMenu));
+    </script>
+    
     <script src="/carrinho.js" is:inline></script>
 </body>
 </html>
