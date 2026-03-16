@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganchos - MM Montagens</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'], condensed: ['Oswald', 'sans-serif'] },
+                    colors: { mm: { blue: '#1489c8', darkblue: '#0d5d9c', yellow: '#fbc02d', footer: '#1a1a1a' } }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50 overflow-x-hidden">
+
+    <!-- HEADER -->
+    <header class="w-full bg-white h-[100px] flex items-center justify-between px-8 lg:px-24 shadow-sm relative z-50">
+        <a href="../../../index.html" class="flex items-center justify-center transition hover:scale-105">
+            <img src="../../../midia/logo4.png" alt="MM Montagens" class="w-[160px] h-auto object-contain">    
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-[14px] font-semibold">
+            <a href="../../../index.html" class="text-[#3aa4de] hover:text-mm-blue transition">Home</a>
+            <a href="../quem-somos.html" class="text-[#3aa4de] hover:text-mm-blue transition">Quem Somos</a>
+            
+            <a href="../produtos.html" class="text-mm-blue relative flex flex-col items-center">
+                <span class="flex items-center gap-1">Produtos <i class="fas fa-chevron-down text-[10px] mt-1"></i></span>
+                <span class="absolute -bottom-2 w-[110%] h-[3px] bg-mm-yellow rounded-full"></span>
+            </a>
+            
+            <a href="../galeria.html" class="text-[#3aa4de] hover:text-mm-blue transition">Galeria</a>
+            <a href="../blog.html" class="text-[#3aa4de] hover:text-mm-blue transition">Blog</a>
+            <a href="../contato.html" class="text-[#3aa4de] hover:text-mm-blue transition">Contato</a>
+
+            <!-- NOVO: ÍCONE DE CARRINHO NO MENU -->
+            <a href="../carrinho.html" class="relative text-mm-blue hover:text-mm-darkblue transition ml-4 text-xl flex items-center">
+                <i class="fas fa-shopping-cart"></i>
+                <!-- A bolinha que o JS vai atualizar -->
+                <span class="badge-carrinho absolute -top-2 -right-3 bg-mm-yellow text-gray-900 text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- BANNER DA CATEGORIA -->
+    <section class="relative w-full h-[200px] flex items-center justify-center overflow-hidden border-t border-mm-blue/20">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80');"></div>
+        <div class="absolute inset-0 bg-mm-darkblue/90 mix-blend-multiply"></div>
+        <div class="relative z-10 text-center text-white flex flex-col mt-4">
+            <h1 class="text-[60px] font-[Oswald] font-bold leading-none tracking-tight drop-shadow-md uppercase">GANCHOS</h1>
+        </div>
+    </section>
+
+    <!-- NAVEGAÇÃO E PRODUTOS -->
+    <section class="w-full py-12 bg-gray-50 min-h-[500px]">
+        <div class="container mx-auto px-8 lg:px-24">
+            
+            <!-- Voltar e Link Orçamento -->
+            <div class="flex justify-between items-center mb-10 border-b border-gray-200 pb-4">
+                <a href="../produtos.html" class="text-gray-500 hover:text-mm-blue font-semibold flex items-center gap-2 transition">
+                    <i class="fas fa-arrow-left"></i> Voltar para Categorias
+                </a>
+                
+                <!-- Botão Ir para Carrinho -->
+                <a href="../carrinho.html" class="bg-mm-blue text-white px-5 py-2 rounded shadow flex items-center gap-2 hover:bg-mm-darkblue transition">
+                    <i class="fas fa-shopping-cart"></i> 
+                    <span class="font-bold">Ir para Carrinho</span>
+                </a>
+            </div>
+
+            <!-- GRADE DE ITENS -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                
+                <!-- Item de Venda 1 -->
+                <div class="bg-white rounded-lg shadow border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-[220px] bg-gray-100 flex items-center justify-center p-4">
+                        <img id="img-prod-1" src="../../../midia/gancho para painel canaletado branco fundo branco.png" alt="Gancho Branco" class="max-h-full object-contain mix-blend-multiply">
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <h3 class="font-bold text-gray-800 text-[15px] leading-tight mb-1">Gancho para Painel Canaletado (Branco)</h3>
+                        <p class="text-gray-400 text-xs mb-4">Código: GPC-001</p>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100 flex gap-2">
+                            <input id="qty-prod-1" type="number" min="1" placeholder="Qtd" class="w-20 border border-gray-300 rounded px-2 py-2 text-gray-700 font-bold focus:outline-none focus:border-mm-blue text-center">
+                            
+                            <!-- Nova Integração com JS -->
+                            <button onclick="adicionarAoCarrinho('prod-1', 'Gancho Painel Branco', 'GPC-001', 'img-prod-1', 'qty-prod-1')" class="flex-1 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold rounded py-2 transition shadow flex justify-center items-center gap-2 text-sm">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item de Venda 2 -->
+                <div class="bg-white rounded-lg shadow border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-[220px] bg-gray-100 flex items-center justify-center p-4">
+                        <img id="img-prod-2" src="../../../midia/gancho para painel canaletado preto fundo branco.png" alt="Gancho Preto" class="max-h-full object-contain mix-blend-multiply">
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <h3 class="font-bold text-gray-800 text-[15px] leading-tight mb-1">Gancho para Painel Canaletado (Preto)</h3>
+                        <p class="text-gray-400 text-xs mb-4">Código: GPC-002</p>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100 flex gap-2">
+                            <input id="qty-prod-2" type="number" min="1" placeholder="Qtd" class="w-20 border border-gray-300 rounded px-2 py-2 text-gray-700 font-bold focus:outline-none focus:border-mm-blue text-center">
+                            
+                            <!-- Nova Integração com JS -->
+                            <button onclick="adicionarAoCarrinho('prod-2', 'Gancho Painel Preto', 'GPC-002', 'img-prod-2', 'qty-prod-2')" class="flex-1 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold rounded py-2 transition shadow flex justify-center items-center gap-2 text-sm">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item de Venda 3 -->
+                <div class="bg-white rounded-lg shadow border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-[220px] bg-gray-100 flex items-center justify-center p-4">
+                        <img id="img-prod-3" src="../../../midia/gancho para painel canaletado Zincado fundo branco.png" alt="Gancho Zincado" class="max-h-full object-contain mix-blend-multiply">
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <h3 class="font-bold text-gray-800 text-[15px] leading-tight mb-1">Gancho para Painel Canaletado (Zincado)</h3>
+                        <p class="text-gray-400 text-xs mb-4">Código: GPC-003</p>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100 flex gap-2">
+                            <input id="qty-prod-3" type="number" min="1" placeholder="Qtd" class="w-20 border border-gray-300 rounded px-2 py-2 text-gray-700 font-bold focus:outline-none focus:border-mm-blue text-center">
+                            
+                            <!-- Nova Integração com JS -->
+                            <button onclick="adicionarAoCarrinho('prod-3', 'Gancho Painel Zincado', 'GPC-003', 'img-prod-3', 'qty-prod-3')" class="flex-1 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold rounded py-2 transition shadow flex justify-center items-center gap-2 text-sm">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER RESUMIDO -->
+    <footer class="w-full bg-mm-footer pt-16 pb-12 relative z-0">
+        <div class="container mx-auto px-8 lg:px-24 text-center text-gray-400 text-sm">
+            <img src="../../../midia/logo4.png" alt="Logo" class="mx-auto mb-4 w-[120px]">
+            <p>&copy; MM Montagens. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- NOVO: BOTÃO FLUTUANTE DE CARRINHO (Escondido por padrão, o JS exibe ele se tiver itens) -->
+    <a href="../../../carrinho.html" id="btn-carrinho-flutuante" class="fixed bottom-28 right-6 bg-mm-blue text-white w-16 h-16 rounded-full items-center justify-center text-2xl shadow-2xl hover:scale-110 transition-transform duration-300 z-50 hidden border-2 border-white">
+        <i class="fas fa-shopping-cart relative">
+            <span class="badge-carrinho absolute -top-2 -right-3 bg-mm-yellow text-gray-900 text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </i>
+    </a>
+
+    <!-- NOVO SCRIPT DO CARRINHO DE ORÇAMENTOS UNIFICADO -->
+    <script src="../../../carrinho.js"></script>
+
+</body>
+</html>

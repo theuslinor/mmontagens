@@ -69,6 +69,11 @@
                 <span>Contato</span>
                 <span class="absolute -bottom-2 w-[120%] h-[3px] bg-mm-yellow rounded-full"></span>
             </a>
+            <a href="carrinho.html" class="relative text-mm-blue hover:text-mm-darkblue transition ml-4 text-xl flex items-center">
+                <i class="fas fa-shopping-cart"></i>
+                <!-- A bolinha que o JS vai atualizar -->
+                <span class="badge-carrinho absolute -top-2 -right-3 bg-mm-yellow text-gray-900 text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+            </a>
         </nav>
     </header>
 
@@ -290,5 +295,6 @@
         </span>
     </div>
 
+    <script src="/carrinho.js"></script>
 </body>
 </html>
