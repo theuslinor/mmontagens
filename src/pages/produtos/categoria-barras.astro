@@ -1,0 +1,87 @@
+---
+import LayoutBase from '../../layouts/LayoutBase.astro';
+---
+
+<LayoutBase title="Barras Expositoras - MM Montagens">
+    <section class="relative w-full h-[200px] flex items-center justify-center overflow-hidden border-t border-mm-blue/20">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80');"></div>
+        <div class="absolute inset-0 bg-mm-darkblue/90 mix-blend-multiply"></div>
+        <div class="relative z-10 text-center text-white flex flex-col mt-4">
+            <h1 class="text-[60px] font-condensed font-bold leading-none tracking-tight drop-shadow-md uppercase">BARRAS</h1>
+        </div>
+    </section>
+
+    <section class="w-full py-12 bg-gray-50 min-h-[500px]">
+        <div class="container mx-auto px-8 lg:px-24">
+            
+            <div class="flex justify-between items-center mb-10 border-b border-gray-200 pb-4">
+                <a href="/produtos" class="text-gray-500 hover:text-mm-blue font-semibold flex items-center gap-2 transition">
+                    <i class="fas fa-arrow-left"></i> Voltar para Categorias
+                </a>
+                
+                <a href="/carrinho" class="bg-mm-blue text-white px-5 py-2 rounded shadow flex items-center gap-2 hover:bg-mm-darkblue transition">
+                    <i class="fas fa-shopping-cart"></i> 
+                    <span class="font-bold">Ir para Carrinho</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                
+                <div class="bg-white rounded-lg shadow border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-[220px] bg-gray-100 flex items-center justify-center p-4">
+                        <img id="img-bar-1" src="/midia/barra para gôndola fundo branco.png" alt="Barra para Gôndola" class="max-h-full object-contain mix-blend-multiply">
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <h3 class="font-bold text-gray-800 text-[15px] leading-tight mb-1">Barra para Gôndola Reforçada</h3>
+                        <p class="text-gray-400 text-xs mb-4">Código: BAR-001</p>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100 flex gap-2">
+                            <input id="qty-bar-1" type="number" min="1" value="1" class="w-20 border border-gray-300 rounded px-2 py-2 text-gray-700 font-bold focus:outline-none focus:border-mm-blue text-center">
+                            
+                            <button onclick="adicionarAoCarrinho('bar-1', 'Barra para Gôndola', 'BAR-001', 'img-bar-1', 'qty-bar-1')" class="flex-1 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold rounded py-2 transition shadow flex justify-center items-center gap-2 text-sm">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-[220px] bg-gray-100 flex items-center justify-center p-4">
+                        <img id="img-bar-2" src="/midia/barra para gôndola fundo branco.png" alt="Barra Encaixe" class="max-h-full object-contain mix-blend-multiply">
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <h3 class="font-bold text-gray-800 text-[15px] leading-tight mb-1">Barra de Encaixe Lateral</h3>
+                        <p class="text-gray-400 text-xs mb-4">Código: BAR-002</p>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100 flex gap-2">
+                            <input id="qty-bar-2" type="number" min="1" value="1" class="w-20 border border-gray-300 rounded px-2 py-2 text-gray-700 font-bold focus:outline-none focus:border-mm-blue text-center">
+                            
+                            <button onclick="adicionarAoCarrinho('bar-2', 'Barra de Encaixe', 'BAR-002', 'img-bar-2', 'qty-bar-2')" class="flex-1 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold rounded py-2 transition shadow flex justify-center items-center gap-2 text-sm">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="h-[220px] bg-gray-100 flex items-center justify-center p-4">
+                        <img id="img-bar-3" src="/midia/barra para gôndola fundo branco.png" alt="Barra Tubular" class="max-h-full object-contain mix-blend-multiply">
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <h3 class="font-bold text-gray-800 text-[15px] leading-tight mb-1">Barra Tubular Expositora</h3>
+                        <p class="text-gray-400 text-xs mb-4">Código: BAR-003</p>
+                        
+                        <div class="mt-auto pt-4 border-t border-gray-100 flex gap-2">
+                            <input id="qty-bar-3" type="number" min="1" value="1" class="w-20 border border-gray-300 rounded px-2 py-2 text-gray-700 font-bold focus:outline-none focus:border-mm-blue text-center">
+                            
+                            <button onclick="adicionarAoCarrinho('bar-3', 'Barra Tubular', 'BAR-003', 'img-bar-3', 'qty-bar-3')" class="flex-1 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold rounded py-2 transition shadow flex justify-center items-center gap-2 text-sm">
+                                <i class="fas fa-cart-plus"></i> Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</LayoutBase>

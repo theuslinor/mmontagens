@@ -1,0 +1,164 @@
+---
+import LayoutBase from '../layouts/LayoutBase.astro';
+---
+
+<LayoutBase title="MM Montagens - Home">
+    <style>
+        .clip-diagonal {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+        }
+        .bg-diagonal-wrapper {
+            background: linear-gradient(to bottom right, #ffffff 50%, #f7f7f7 50%);
+        }
+    </style>
+
+    <section class="relative w-full h-[500px] bg-[#1c1d1e] flex items-center overflow-hidden border-t-2 border-mm-blue">
+        <div class="absolute -top-[250px] -left-[150px] w-[500px] h-[500px] bg-mm-blue rounded-full opacity-90 blur-[2px]"></div>
+        <div class="absolute top-[-50%] -right-[15%] w-[1200px] h-[1200px] bg-[#f5f5f5] rounded-full z-0 shadow-2xl"></div>
+        <div class="absolute top-[-40%] -right-[20%] w-[1200px] h-[1200px] bg-gradient-to-br from-[#0e60a1] to-mm-blue rounded-full z-0 shadow-inner"></div>
+
+        <div class="container mx-auto px-8 lg:px-24 relative z-10 flex justify-between items-center w-full">
+            <div class="max-w-xl">
+                <h1 class="flex flex-col gap-0">
+                    <span class="text-white font-bold text-[55px] leading-tight tracking-wide">SOLUÇÕES</span>
+                    <span class="text-[#EDC241] font-light text-[45px] leading-none tracking-widest -mt-2">PERSONALIZADAS</span>
+                    <span class="text-white font-bold text-[42px] leading-tight tracking-wide mt-2">PARA O SEU NÉGOCIO</span>
+                </h1>
+                <a href="/quem-somos" class="inline-block mt-8 px-6 py-2 rounded border border-white text-white font-light text-lg hover:bg-white hover:text-mm-dark transition">
+                    Saiba mais
+                </a>
+            </div>
+
+            <div class="relative w-[450px] h-[400px] hidden lg:block mr-8">
+                <div class="absolute top-0 right-0 w-[300px] h-[300px] rounded-full border-[8px] border-[#e8e9eb] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-10 bg-white">
+                    <img src="/midia/gancho para painel canaletado branco fundo branco.png" alt="Ganchos de metal" class="w-full h-full object-cover scale-110">
+                </div>
+                <div class="absolute bottom-4 left-0 w-[220px] h-[220px] rounded-full border-[8px] border-[#e8e9eb] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-20 bg-white">
+                    <img src="/midia/barra para gôndola branca fundo branco.png" alt="Suportes de metal" class="w-full h-full object-cover scale-125">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full flex flex-col md:flex-row h-auto min-h-[500px]">
+        <div class="w-full md:w-[40%] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80'); min-height: 400px;">
+        </div>
+        
+        <div class="w-full md:w-[60%] bg-mm-blue relative flex items-center p-12 lg:p-20 overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-overlay" style="background-image: url('https://images.unsplash.com/photo-1565620731358-e8c156f7e918?auto=format&fit=crop&q=80');"></div>
+            
+            <div class="relative z-10 w-full">
+                <h3 class="text-white text-sm font-bold uppercase tracking-wider mb-2">POR QUE ESCOLHER A MM MONTAGENS?</h3>
+                <h2 class="text-white text-[32px] md:text-[40px] font-light mb-12 leading-tight">
+                    A MM Montagens é sinônimo de <strong class="font-extrabold">QUALIDADE.</strong>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-8 mb-12">
+                    <div class="flex items-center gap-4 text-white">
+                        <i class="fas fa-coins text-4xl opacity-90"></i>
+                        <span class="text-xl font-light leading-tight">Ótimo custo<br>benefício</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-white">
+                        <i class="fas fa-boxes-stacked text-4xl opacity-90"></i>
+                        <span class="text-xl font-light leading-tight">Variedade de<br>produtos</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-white">
+                        <i class="fas fa-truck text-4xl opacity-90"></i>
+                        <span class="text-xl font-light leading-tight">Entrega para<br>todo o Brasil</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-white">
+                        <i class="fas fa-award text-4xl opacity-90"></i>
+                        <span class="text-xl font-light leading-tight">Qualidade<br>nos produtos</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="/quem-somos" class="bg-[#0e6ba0] hover:bg-[#0b547d] transition text-white font-bold py-3 px-8 rounded text-sm">
+                        Saiba Mais
+                    </a>
+                    <a href="/produtos" class="bg-white hover:bg-gray-100 transition text-[#0e6ba0] font-bold py-3 px-8 rounded text-sm shadow-md">
+                        Conheça nossos produtos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full pt-20 pb-12 bg-white relative">
+        <div class="container mx-auto px-8 lg:px-24">
+            <div class="text-center mb-12">
+                <h3 class="text-mm-blue text-xs font-bold uppercase tracking-widest mb-2">NOSSO BLOG</h3>
+                <h2 class="text-gray-500 text-4xl font-bold">Veja as últimas notícias</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex flex-col group cursor-pointer">
+                    <div class="h-[220px] overflow-hidden bg-gray-200 mb-4 relative">
+                        <img src="/midia/gancho para painel canaletado branco fundo branco.png" alt="Ganchos" class="w-full h-full object-cover grayscale opacity-70 group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h4 class="text-mm-blue text-xl font-bold leading-tight mb-3">5 vantagens em utilizar ganchos para painel canaletado</h4>
+                    <p class="text-gray-400 text-xs">08 Fevereiro 2023</p>
+                </div>
+                
+                <div class="flex flex-col group cursor-pointer">
+                    <div class="h-[220px] overflow-hidden bg-gray-200 mb-4">
+                        <img src="/midia/gancho para painel canaletado preto fundo branco.png" alt="Loja" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h4 class="text-mm-blue text-xl font-bold leading-tight mb-3">Qual o tipo de suporte ideal para a sua loja?</h4>
+                    <p class="text-gray-400 text-xs">01 Fevereiro 2023</p>
+                </div>
+
+                <div class="flex flex-col group cursor-pointer">
+                    <div class="h-[220px] overflow-hidden bg-gray-200 mb-4">
+                        <img src="/midia/gancho para painel canaletado branco fundo branco.png" alt="Loja de roupas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h4 class="text-mm-blue text-xl font-bold leading-tight mb-3">5 Dicas para montar uma loja que se destaque</h4>
+                    <p class="text-gray-400 text-xs">25 Janeiro 2023</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="w-full h-[100px] bg-mm-light" style="clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%); margin-top: -100px; position: relative; z-index: 10;"></div>
+
+    <section class="w-full py-16 bg-mm-light relative z-0">
+        <div class="container mx-auto px-8 lg:px-24 text-center">
+            <h2 class="text-mm-blue text-4xl font-bold mb-16">Principais clientes</h2>
+            
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 mb-12 opacity-90">
+                <div class="flex items-center gap-2">
+                    <div class="grid grid-cols-2 gap-[2px]">
+                        <div class="w-3 h-3 bg-mm-yellow"></div><div class="w-3 h-3 bg-mm-blue"></div>
+                        <div class="w-3 h-3 bg-mm-blue"></div><div class="w-3 h-3 bg-mm-blue"></div>
+                    </div>
+                    <div class="text-left leading-none">
+                        <span class="text-[32px] font-black tracking-tighter text-mm-blue block">artcom</span>
+                        <span class="text-[20px] font-black tracking-tight text-mm-blue block -mt-1 text-right">vidros</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-1 border-b border-black pb-1">
+                    <span class="text-3xl font-black tracking-tighter text-gray-900 uppercase">Cheung</span>
+                    <div class="w-10 h-10 border-4 border-red-600 rounded-full bg-white mx-1"></div>
+                    <span class="text-2xl font-black tracking-tighter text-gray-900 uppercase">Instalações</span>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <div class="text-mm-yellow text-5xl font-black tracking-tighter flex items-center relative">
+                        M
+                        <span class="text-mm-darkblue absolute -top-4 left-[22px] text-4xl z-10">D</span>
+                        <i class="fas fa-tshirt text-mm-darkblue absolute -top-8 left-[38px] text-3xl"></i>
+                        L
+                    </div>
+                    <span class="text-mm-yellow font-bold text-sm tracking-tight leading-none">MERCADÃO DO LOJISTA<br><span class="text-mm-darkblue float-right text-[10px] mt-1">.com.br</span></span>
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-3">
+                <span class="w-4 h-4 rounded-full bg-gray-400"></span>
+                <span class="w-4 h-4 rounded-full bg-gray-200"></span>
+                <span class="w-4 h-4 rounded-full bg-gray-200"></span>
+            </div>
+        </div>
+    </section>
+</LayoutBase>

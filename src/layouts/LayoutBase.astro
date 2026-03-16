@@ -1,0 +1,111 @@
+---
+// src/layouts/LayoutBase.astro
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    </head>
+<body class="font-sans antialiased text-gray-800 bg-white overflow-x-hidden">
+
+    <header class="w-full bg-white h-[100px] flex items-center justify-between px-8 lg:px-24 shadow-sm relative z-50">
+        <a href="/" class="flex items-center justify-center transition hover:scale-105">
+            <img src="/midia/logo4.png" alt="MM Montagens" class="w-[160px] h-auto object-contain">
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-[14px] font-semibold">
+            <a href="/" class="text-[#3aa4de] hover:text-mm-blue transition">Home</a>
+            <a href="/quem-somos" class="text-[#3aa4de] hover:text-mm-blue transition">Quem Somos</a>
+            <a href="/produtos" class="text-[#3aa4de] hover:text-mm-blue transition flex items-center gap-1">
+                Produtos <></i>
+            </a>
+            <a href="/galeria" class="text-[#3aa4de] hover:text-mm-blue transition">Galeria</a>
+            <a href="/blog" class="text-[#3aa4de] hover:text-mm-blue transition">Blog</a>
+            <a href="/contato" class="text-[#3aa4de] hover:text-mm-blue transition">Contato</a>
+            <a href="/carrinho" class="relative text-mm-blue hover:text-mm-darkblue transition ml-4 text-xl flex items-center">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge-carrinho absolute -top-2 -right-3 bg-mm-yellow text-gray-900 text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full hidden">0</span>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <slot />
+    </main>
+
+    <footer class="w-full bg-[#1a1a1a] pt-16 pb-12 mt-12 text-white">
+        <div class="container mx-auto px-8 lg:px-24">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-sm">
+                
+                <div class="flex flex-col items-center md:items-start">
+                    <a href="/" class="mb-6 transition hover:scale-105">
+                        <img src="/midia/logo4.png" alt="MM Montagens" class="w-[180px] h-auto object-contain">
+                    </a>
+                    <p class="text-gray-400 leading-relaxed mb-6 text-center md:text-left pr-0 md:pr-4">
+                        A MM Montagens é sinônimo de qualidade. Somos fabricantes de uma grande variedade de produtos.
+                    </p>
+                    <p class="text-gray-500 text-xs">
+                        Política de Privacidade | Termos de Uso
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <h4 class="font-bold uppercase tracking-wide mb-6">SOLICITE O SEU ORÇAMENTO</h4>
+                    <a href="/contato" class="inline-block bg-mm-blue hover:bg-[#0e6ba0] transition text-white font-bold py-3 px-12 rounded shadow-md uppercase">
+                        Entre em contato
+                    </a>
+                </div>
+
+                <div class="flex flex-col items-center md:items-start">
+                    <h4 class="font-bold uppercase tracking-wide mb-6">ENTRE EM CONTATO</h4>
+                    <ul class="text-gray-400 space-y-4 mb-8">
+                        <li class="flex items-center gap-4">
+                            <i class="fab fa-whatsapp text-mm-blue text-xl w-6"></i>
+                            <span>(11) 99803-8196</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i class="fas fa-at text-mm-blue text-xl w-6"></i>
+                            <span>mm.montagens@uol.com.br</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-map-marker-alt text-mm-blue text-xl w-6"></i>
+                            <span class="leading-relaxed">R. Marcello Müller, 766<br>Vila Independência, São Paulo - SP,<br>03223-060</span>
+                        </li>
+                    </ul>
+
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-mm-blue text-white flex items-center justify-center hover:bg-white hover:text-mm-blue transition shadow-md">
+                            <i class="fab fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-mm-blue text-white flex items-center justify-center hover:bg-white hover:text-mm-blue transition shadow-md">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-mm-blue text-white flex items-center justify-center hover:bg-white hover:text-mm-blue transition shadow-md">
+                            <i class="fab fa-linkedin-in text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <a href="/carrinho" id="btn-carrinho-flutuante" class="fixed bottom-10 right-6 bg-mm-blue text-white w-16 h-16 rounded-full items-center justify-center text-2xl shadow-2xl hover:scale-110 transition-transform duration-300 z-50 hidden border-2 border-white">
+        <i class="fas fa-shopping-cart relative">
+            <span class="badge-carrinho absolute -top-2 -right-3 bg-mm-yellow text-gray-900 text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+        </i>
+    </a>
+
+    <script src="/carrinho.js" is:inline></script>
+</body>
+</html>

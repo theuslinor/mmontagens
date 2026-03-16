@@ -1,0 +1,63 @@
+---
+import LayoutBase from '../layouts/LayoutBase.astro';
+---
+
+<LayoutBase title="MM Montagens - Blog">
+    <section class="relative w-full h-[260px] flex items-center justify-center overflow-hidden border-t border-mm-blue/20">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80');"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#1489c8]/95 via-[#1489c8]/90 to-[#0e6ba0]/95 mix-blend-multiply"></div>
+        
+        <div class="relative z-10 text-center text-white flex flex-col mt-4">
+            <h1 class="text-[55px] md:text-[65px] font-black leading-none tracking-tight drop-shadow-md">ÚLTIMAS</h1>
+            <h2 class="text-[55px] md:text-[65px] font-light leading-none tracking-tight drop-shadow-md -mt-2">NOTÍCIAS</h2>
+        </div>
+    </section>
+
+    <section class="w-full py-16 bg-white min-h-[600px]">
+        <div class="container mx-auto px-8 lg:px-24">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                
+                <div class="flex flex-col gap-8">
+                    <article class="border border-gray-200 bg-white flex flex-col cursor-pointer group hover:shadow-lg transition duration-300">
+                        <div class="h-[220px] overflow-hidden">
+                            <img src="/midia/gancho para painel canaletado branco fundo branco.png" alt="Ganchos painel canaletado" class="w-full h-full object-cover grayscale opacity-90 group-hover:scale-105 group-hover:grayscale-0 transition duration-500">
+                        </div>
+                        <div class="p-8 flex flex-col">
+                            <span class="text-[14px] text-gray-500 mb-5">Fev'08, 2023</span>
+                            <h3 class="text-[22px] font-bold text-mm-cyan leading-snug mb-8">5 vantagens em utilizar ganchos par...</h3>
+                            <a href="#" class="text-[14px] font-bold text-mm-cyan hover:text-mm-darkblue transition">Leia mais...</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="flex flex-col gap-8">
+                    <article class="border border-gray-200 bg-white flex flex-col cursor-pointer group hover:shadow-lg transition duration-300">
+                        <div class="p-8 flex flex-col pb-12">
+                            <span class="text-[14px] text-gray-500 mb-5">Fev'01, 2023</span>
+                            <h3 class="text-[22px] font-bold text-mm-cyan leading-snug mb-8">Qual o tipo de suporte ideal para a...</h3>
+                            <a href="#" class="text-[14px] font-bold text-mm-cyan hover:text-mm-darkblue transition">Leia mais...</a>
+                        </div>
+                        <div class="h-[280px] overflow-hidden">
+                            <img src="/midia/gancho para painel canaletado Zincado fundo branco.png" alt="Loja Bijuterias" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </div>
+                    </article>
+                </div>
+
+                <div class="flex flex-col gap-8">
+                    <article class="border border-gray-200 bg-white flex flex-col cursor-pointer group hover:shadow-lg transition duration-300">
+                        <div class="h-[240px] overflow-hidden">
+                            <img src="/midia/gancho para painel canaletado Zincado fundo branco.png" alt="Loja Roupas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="p-8 flex flex-col">
+                            <span class="text-[14px] text-gray-500 mb-5">Jan'25, 2023</span>
+                            <h3 class="text-[22px] font-bold text-mm-cyan leading-snug mb-8">5 Dicas para montar uma loja que se...</h3>
+                            <a href="#" class="text-[14px] font-bold text-mm-cyan hover:text-mm-darkblue transition">Leia mais...</a>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</LayoutBase>

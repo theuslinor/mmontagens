@@ -1,0 +1,89 @@
+---
+import LayoutBase from '../layouts/LayoutBase.astro';
+---
+
+<LayoutBase title="MM Montagens - Quem Somos">
+    <style>
+        /* Corte diagonal da seção de Orçamento */
+        .clip-slant {
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+        }
+    </style>
+
+    <section class="relative w-full h-[260px] flex items-center justify-center overflow-hidden border-t border-mm-blue/20">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80');"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#1489c8]/90 to-[#0e6ba0]/90 mix-blend-multiply"></div>
+        
+        <div class="relative z-10 text-center text-white flex flex-col mt-4">
+            <h1 class="text-[55px] font-black leading-none tracking-wide drop-shadow-md">QUEM</h1>
+            <h2 class="text-[55px] font-light leading-none tracking-wide drop-shadow-md -mt-2">SOMOS</h2>
+        </div>
+    </section>
+
+    <section class="w-full pt-20 pb-12 bg-white">
+        <div class="container mx-auto px-8 lg:px-24 flex flex-col lg:flex-row gap-16 items-center">
+            
+            <div class="w-full lg:w-3/5">
+                <h2 class="text-mm-cyan text-3xl font-bold mb-8">Nossa história</h2>
+                
+                <div class="space-y-5 text-[15px] text-[#555555] font-normal leading-relaxed">
+                    <p>Manoel Antonio, conhecido como Toninho, trabalhou até os 30 anos em uma empresa de montagens. A empresa faliu ele foi obrigado a encontrar novas oportunidades em 1995 para trabalhar comunicação visual e estrutura. Após anos de esforço, montou uma clientela.</p>
+                    <p>Em 2005 ele abriu a empresa e desde 2005 ele trabalha com gancho e outros segmentos. Vidro modulado. No início, as máquinas eram terceirizadas, mas com o passar do tempo o maquinário passou a ser próprio, elevando o padrão de qualidade.</p>
+                    <p>Em mais de 18 anos de anos de MM Montagens, os clientes se expandiram para outras áreas de atuação além do varejo e, atualmente, são feitas entregas para todo o Brasil para os mais diversos clientes.</p>
+                    <p>Durante toda a sua trajetória, a MM Montagens tem como diferencial o preço justo e entrega rápida.</p>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-2/5 flex justify-center mt-8 lg:mt-0">
+                <div class="relative w-[340px] h-[340px] rounded-full border-[10px] border-[#e8e9eb] flex items-center justify-center overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.4)] bg-white">
+                    <img src="/midia/logo4.png" alt="Logo MM Montagens" class="w-2/3 h-auto object-contain">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full pb-20 bg-white">
+        <div class="container mx-auto px-8 lg:px-24">
+            <div class="w-full border-t border-mm-blue mb-16 opacity-30"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-bullseye text-5xl text-mm-cyan mb-6"></i>
+                    <h3 class="text-[#202538] text-xl font-bold mb-4">Missão</h3>
+                    <p class="text-[14px] text-[#666666] leading-relaxed px-4">
+                        Melhorar a qualidade do produto de uma forma mais eficiente e proporcionar uma entrega de maior qualidade tempo e satisfação de qualidade.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-eye text-5xl text-mm-cyan mb-6"></i>
+                    <h3 class="text-[#202538] text-xl font-bold mb-4">Visão</h3>
+                    <p class="text-[14px] text-[#666666] leading-relaxed">
+                        Cada vez produzir melhor
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <i class="far fa-gem text-5xl text-mm-cyan mb-6"></i>
+                    <h3 class="text-[#202538] text-xl font-bold mb-4">Valores</h3>
+                    <ul class="text-[14px] text-[#666666] space-y-2">
+                        <li>• Integridade</li>
+                        <li>• Lealdade</li>
+                        <li>• Confiança</li>
+                        <li>• Transparência</li>
+                        <li>• Preço justo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full pt-28 pb-16 clip-slant bg-gradient-to-r from-mm-cyan to-[#0d6ba6] -mt-8 relative z-10">
+        <div class="container mx-auto px-8 text-center flex flex-col items-center">
+            <h2 class="text-white text-[32px] md:text-4xl font-bold mb-8 tracking-wide drop-shadow-sm">Solicite seu orçamento</h2>
+            <a href="/contato" class="bg-white text-mm-blue font-bold px-8 py-3 rounded shadow-lg hover:bg-gray-50 hover:-translate-y-0.5 transition-all duration-300">
+                Entre em contato
+            </a>
+        </div>
+    </section>
+</LayoutBase>

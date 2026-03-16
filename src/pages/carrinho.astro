@@ -1,3 +1,8 @@
+---
+// src/pages/carrinho.astro
+// Esta página não usa o LayoutBase pois tem um header simplificado focado em conversão.
+---
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,24 +12,18 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Montserrat', 'sans-serif'] }, colors: { mm: { blue: '#1489c8', darkblue: '#0d5d9c', yellow: '#fbc02d', footer: '#1a1a1a' } } } } }
-    </script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-[#f4f7f6]">
 
-    <!-- HEADER SIMPLIFICADO -->
     <header class="w-full bg-white h-[90px] flex items-center justify-between px-8 lg:px-24 shadow-sm relative z-50 border-b border-gray-100">
-        <a href="../../index.html" class="flex items-center justify-center transition hover:scale-105">
-            <img src="../../midia/logo4.png" alt="MM Montagens" class="w-[140px] h-auto object-contain">    
+        <a href="/" class="flex items-center justify-center transition hover:scale-105">
+            <img src="/midia/logo4.png" alt="MM Montagens" class="w-[140px] h-auto object-contain">    
         </a>
-        <a href="../pages/produtos.html" class="text-mm-blue hover:text-mm-darkblue font-bold flex items-center gap-2 transition bg-blue-50 px-4 py-2 rounded-full text-sm shadow-sm hover:shadow">
+        <a href="/produtos" class="text-mm-blue hover:text-mm-darkblue font-bold flex items-center gap-2 transition bg-blue-50 px-4 py-2 rounded-full text-sm shadow-sm hover:shadow">
             <i class="fas fa-arrow-left"></i> Continuar Comprando
         </a>
     </header>
 
-    <!-- ÁREA DO CARRINHO -->
     <section class="container mx-auto px-4 lg:px-24 py-12 min-h-[600px]">
         
         <div class="flex items-center gap-3 mb-8 border-b border-gray-200 pb-4">
@@ -32,10 +31,8 @@
             <h1 class="text-3xl font-black text-gray-800 tracking-tight">Meu Orçamento</h1>
         </div>
 
-        <!-- DIVISÃO: LISTA (Esquerda) e RESUMO (Direita) -->
         <div class="flex flex-col lg:flex-row gap-8 items-start hidden" id="carrinho-conteudo">
             
-            <!-- COLUNA ESQUERDA: LISTA DE PRODUTOS -->
             <div class="w-full lg:w-2/3 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                 
                 <div class="hidden md:grid grid-cols-[1fr_150px_80px] gap-4 p-4 bg-gray-50 border-b border-gray-200 text-xs font-bold text-gray-500 uppercase tracking-wider">
@@ -44,7 +41,6 @@
                     <div class="text-center">Ação</div>
                 </div>
 
-                <!-- Onde os produtos serão inseridos -->
                 <div id="lista-carrinho" class="flex flex-col"></div>
                 
                 <div class="p-4 bg-gray-50 border-t border-gray-200 flex justify-between items-center">
@@ -54,7 +50,6 @@
                 </div>
             </div>
 
-            <!-- COLUNA DIREITA: RESUMO -->
             <div class="w-full lg:w-1/3 bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-8">
                 <h2 class="text-xl font-bold text-gray-800 mb-6 pb-4 border-b border-gray-100">Resumo do Pedido</h2>
                 
@@ -82,22 +77,20 @@
 
         </div>
 
-        <!-- MENSAGEM DE CARRINHO VAZIO -->
         <div id="carrinho-vazio" class="bg-white rounded-xl shadow-sm border border-gray-200 p-16 text-center hidden">
             <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-300">
                 <i class="fas fa-shopping-basket text-4xl"></i>
             </div>
             <h2 class="text-2xl font-black text-gray-800 mb-2">Seu orçamento está vazio!</h2>
             <p class="text-gray-500 mb-8">Navegue pelas nossas categorias e adicione produtos.</p>
-            <a href="../pages/produtos.html" class="inline-block bg-mm-blue hover:bg-mm-darkblue text-white font-bold px-8 py-3 rounded-full transition shadow-md">
+            <a href="/produtos" class="inline-block bg-mm-blue hover:bg-mm-darkblue text-white font-bold px-8 py-3 rounded-full transition shadow-md">
                 Ver Produtos
             </a>
         </div>
 
     </section>
 
-    <!-- SCRIPT DE RENDERIZAÇÃO (Integrado direto na página para evitar erro de caminho) -->
-    <script>
+    <script is:inline>
         const CHAVE_CARRINHO = "mm_montagens_carrinho";
 
         function getCarrinhoLocal() {
@@ -111,7 +104,6 @@
         function renderizarPaginaCarrinho() {
             const itens = getCarrinhoLocal();
             
-            // Pega as divs do HTML
             const container = document.getElementById('lista-carrinho');
             const areaConteudo = document.getElementById('carrinho-conteudo');
             const areaVazia = document.getElementById('carrinho-vazio');
@@ -119,35 +111,32 @@
             const resumoProdutos = document.getElementById('resumo-total-produtos');
             const resumoPecas = document.getElementById('resumo-total-pecas');
 
-            // Se estiver Vazio, mostra a tela de vazio e esconde a tabela
             if (itens.length === 0) {
                 areaConteudo.classList.add('hidden');
                 areaVazia.classList.remove('hidden');
                 return;
             }
 
-            // Se houver itens, mostra a tabela e esconde o vazio
             areaConteudo.classList.remove('hidden');
             areaVazia.classList.add('hidden');
-            container.innerHTML = ''; // Limpa antes de injetar
+            container.innerHTML = ''; 
 
             let totalPecas = 0;
 
-            // Constroi cada produto na tela
             itens.forEach((item, index) => {
                 totalPecas += item.qtd;
                 
-                // Ajusta o caminho da imagem dependendo de onde o carrinho.html estiver rodando
-                // Remove "../../" indesejados caso a imagem venha da página de produtos
-                let imagemCorrigida = item.img.replace("../../midia/", "midia/").replace("../../../midia/", "midia/");
+                // Limpeza brutal do caminho da imagem (pra evitar lixo do HTML antigo)
+                let imagemCorrigida = item.img;
+                if(imagemCorrigida.includes("midia/")) {
+                    imagemCorrigida = "/midia/" + imagemCorrigida.split("midia/")[1];
+                }
                 
                 container.innerHTML += `
                     <div class="grid grid-cols-1 md:grid-cols-[1fr_150px_80px] gap-4 p-4 md:p-6 border-b border-gray-100 items-center hover:bg-gray-50 transition">
-                        
-                        <!-- Dados do Produto -->
                         <div class="flex items-center gap-4">
                             <div class="w-20 h-20 bg-white border border-gray-200 rounded p-1 flex-shrink-0 flex items-center justify-center">
-                                <img src="${imagemCorrigida}" onerror="this.src='midia/logo4.png'" alt="${item.nome}" class="max-h-full object-contain mix-blend-multiply">
+                                <img src="${imagemCorrigida}" onerror="this.src='/midia/logo4.png'" alt="${item.nome}" class="max-h-full object-contain mix-blend-multiply">
                             </div>
                             <div class="flex flex-col">
                                 <h3 class="font-bold text-gray-800 text-[15px] leading-tight md:text-base">${item.nome}</h3>
@@ -155,7 +144,6 @@
                             </div>
                         </div>
 
-                        <!-- Controle de Quantidade -->
                         <div class="flex items-center justify-center mt-4 md:mt-0">
                             <div class="flex border border-gray-300 rounded-md overflow-hidden bg-white shadow-sm">
                                 <button onclick="alterarQtd(${index}, -1)" class="w-10 h-10 text-gray-500 hover:bg-gray-100 hover:text-mm-blue transition focus:outline-none flex items-center justify-center border-r border-gray-300">
@@ -168,7 +156,6 @@
                             </div>
                         </div>
 
-                        <!-- Lixeira -->
                         <div class="flex justify-center mt-2 md:mt-0">
                             <button onclick="removerItem(${index})" class="text-gray-400 hover:text-red-500 w-10 h-10 rounded-full hover:bg-red-50 transition focus:outline-none" title="Remover Produto">
                                 <i class="fas fa-trash-alt text-lg"></i>
@@ -178,12 +165,10 @@
                 `;
             });
 
-            // Atualiza os Textos do Resumo Lateral
             resumoProdutos.innerText = itens.length;
             resumoPecas.innerText = totalPecas;
         }
 
-        // Funções de Ação do Carrinho
         function alterarQtd(index, valor) {
             let itens = getCarrinhoLocal();
             let novaQtd = itens[index].qtd + valor;
@@ -234,7 +219,6 @@
             window.open(`https://wa.me/5511932433674?text=${texto}`, "_blank");
         }
 
-        // Inicializa a página assim que o navegador lê o HTML
         window.addEventListener('DOMContentLoaded', renderizarPaginaCarrinho);
     </script>
 </body>
