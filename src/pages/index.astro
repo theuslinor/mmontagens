@@ -1,8 +1,10 @@
 ---
 import LayoutBase from '../layouts/LayoutBase.astro';
+import ClientesCarousel from '../components/ClientesCarousel.astro';
 ---
 
 <LayoutBase title="MM Montagens - Home">
+
     <style>
         .clip-diagonal {
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
@@ -41,7 +43,9 @@ import LayoutBase from '../layouts/LayoutBase.astro';
     </section>
 
     <section class="w-full flex flex-col md:flex-row h-auto min-h-[500px]">
-        <div class="w-full md:w-[40%] bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80'); min-height: 400px;">
+        <div 
+            class="w-full md:w-[40%] bg-cover bg-center" 
+            style="background-image: url('/midia/fundo.png'); min-height: 400px;">
         </div>
         
         <div class="w-full md:w-[60%] bg-mm-blue relative flex items-center p-12 lg:p-20 overflow-hidden">
@@ -94,7 +98,7 @@ import LayoutBase from '../layouts/LayoutBase.astro';
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="flex flex-col group cursor-pointer">
                     <div class="h-[220px] overflow-hidden bg-gray-200 mb-4 relative">
-                        <img src="/midia/gancho para painel canaletado branco fundo branco.png" alt="Ganchos" class="w-full h-full object-cover grayscale opacity-70 group-hover:scale-105 transition duration-500">
+                        <img src="/midia/blog/vantagens.jpg" alt="Ganchos" class="w-full h-full object-cover grayscale opacity-70 group-hover:scale-105 transition duration-500">
                     </div>
                     <h4 class="text-mm-blue text-xl font-bold leading-tight mb-3">5 vantagens em utilizar ganchos para painel canaletado</h4>
                     <p class="text-gray-400 text-xs">08 Fevereiro 2023</p>
@@ -102,7 +106,7 @@ import LayoutBase from '../layouts/LayoutBase.astro';
                 
                 <div class="flex flex-col group cursor-pointer">
                     <div class="h-[220px] overflow-hidden bg-gray-200 mb-4">
-                        <img src="/midia/gancho para painel canaletado preto fundo branco.png" alt="Loja" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="/midia/blog/tipo_ideal.png" alt="Loja" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <h4 class="text-mm-blue text-xl font-bold leading-tight mb-3">Qual o tipo de suporte ideal para a sua loja?</h4>
                     <p class="text-gray-400 text-xs">01 Fevereiro 2023</p>
@@ -110,7 +114,7 @@ import LayoutBase from '../layouts/LayoutBase.astro';
 
                 <div class="flex flex-col group cursor-pointer">
                     <div class="h-[220px] overflow-hidden bg-gray-200 mb-4">
-                        <img src="/midia/gancho para painel canaletado branco fundo branco.png" alt="Loja de roupas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="/midia/blog/montar_loja.jpg" alt="Loja de roupas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <h4 class="text-mm-blue text-xl font-bold leading-tight mb-3">5 Dicas para montar uma loja que se destaque</h4>
                     <p class="text-gray-400 text-xs">25 Janeiro 2023</p>
@@ -122,43 +126,10 @@ import LayoutBase from '../layouts/LayoutBase.astro';
     <div class="w-full h-[100px] bg-mm-light" style="clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%); margin-top: -100px; position: relative; z-index: 10;"></div>
 
     <section class="w-full py-16 bg-mm-light relative z-0">
-        <div class="container mx-auto px-8 lg:px-24 text-center">
-            <h2 class="text-mm-blue text-4xl font-bold mb-16">Principais clientes</h2>
-            
-            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 mb-12 opacity-90">
-                <div class="flex items-center gap-2">
-                    <div class="grid grid-cols-2 gap-[2px]">
-                        <div class="w-3 h-3 bg-mm-yellow"></div><div class="w-3 h-3 bg-mm-blue"></div>
-                        <div class="w-3 h-3 bg-mm-blue"></div><div class="w-3 h-3 bg-mm-blue"></div>
-                    </div>
-                    <div class="text-left leading-none">
-                        <span class="text-[32px] font-black tracking-tighter text-mm-blue block">artcom</span>
-                        <span class="text-[20px] font-black tracking-tight text-mm-blue block -mt-1 text-right">vidros</span>
-                    </div>
-                </div>
-
-                <div class="flex items-center gap-1 border-b border-black pb-1">
-                    <span class="text-3xl font-black tracking-tighter text-gray-900 uppercase">Cheung</span>
-                    <div class="w-10 h-10 border-4 border-red-600 rounded-full bg-white mx-1"></div>
-                    <span class="text-2xl font-black tracking-tighter text-gray-900 uppercase">Instalações</span>
-                </div>
-
-                <div class="flex flex-col items-center">
-                    <div class="text-mm-yellow text-5xl font-black tracking-tighter flex items-center relative">
-                        M
-                        <span class="text-mm-darkblue absolute -top-4 left-[22px] text-4xl z-10">D</span>
-                        <i class="fas fa-tshirt text-mm-darkblue absolute -top-8 left-[38px] text-3xl"></i>
-                        L
-                    </div>
-                    <span class="text-mm-yellow font-bold text-sm tracking-tight leading-none">MERCADÃO DO LOJISTA<br><span class="text-mm-darkblue float-right text-[10px] mt-1">.com.br</span></span>
-                </div>
-            </div>
-
-            <div class="flex justify-center gap-3">
-                <span class="w-4 h-4 rounded-full bg-gray-400"></span>
-                <span class="w-4 h-4 rounded-full bg-gray-200"></span>
-                <span class="w-4 h-4 rounded-full bg-gray-200"></span>
-            </div>
+        
+        <ClientesCarousel />
         </div>
     </section>
+
+    
 </LayoutBase>
