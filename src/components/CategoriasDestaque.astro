@@ -1,0 +1,64 @@
+---
+const categorias = [
+  {
+    id: '01',
+    nome: 'Ganchos',
+    img: '/midia/gancho/canaletado/gancho-canaletado-30cm-zincado.jpeg',
+    icon: 'fas fa-grip-lines', // Ícone que lembra ganchos
+    link: '/produtos/categoria-ganchos'
+  },
+  {
+    id: '02',
+    nome: 'Suporte',
+    img: '/midia/suportes/suporte-faca.jpeg',
+    icon: 'fas fa-utensils', // Exemplo para suporte de facas
+    link: '/produtos/categoria-suportes'
+  },
+  {
+    id: '03',
+    nome: 'Balcão modulados',
+    img: '/midia/balcao/balcao.jpg',
+    icon: 'fas fa-th-large',
+    link: '/produtos#balcoes'
+  }
+];
+---
+
+<section class="w-full bg-[#0a1a2a] pt-20 pb-40 relative">
+    <div class="container mx-auto px-8 lg:px-24">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6">
+            <h2 class="text-white text-3xl md:text-4xl font-bold max-w-2xl leading-tight">
+                Oferecemos a melhor apresentação e organização das suas mercadorias
+            </h2>
+            <a href="/contato" class="bg-mm-blue hover:bg-blue-600 transition text-white font-bold py-3 px-8 rounded-lg text-sm">
+                Entre em contato
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-20 -mb-64">
+            {categorias.map((cat) => (
+                <div class="bg-white rounded-[40px] shadow-2xl overflow-hidden flex flex-col group hover:-translate-y-2 transition-transform duration-500">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src={cat.img} alt={cat.nome} class="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
+                        <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-20 h-20 bg-mm-blue rounded-3xl flex items-center justify-center border-8 border-white shadow-lg">
+                            <i class={`${cat.icon} text-white text-2xl`}></i>
+                        </div>
+                    </div>
+
+                    <div class="pt-14 pb-10 px-8 text-center flex flex-col items-center">
+                        <h3 class="text-mm-blue text-2xl font-bold mb-8">{cat.nome}</h3>
+                        
+                        <div class="flex items-center justify-between w-full mt-auto">
+                            <span class="text-gray-100 text-6xl font-black select-none">{cat.id}</span>
+                            <a href={cat.link} class="w-12 h-12 bg-mm-blue rounded-full flex items-center justify-center text-white hover:bg-mm-yellow transition-colors group/btn">
+                                <i class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>
+
+<div class="h-64 bg-white"></div>

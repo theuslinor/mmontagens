@@ -1,6 +1,7 @@
 ---
 import LayoutBase from '../layouts/LayoutBase.astro';
 import ClientesCarousel from '../components/ClientesCarousel.astro';
+import CategoriasDestaque from '../components/CategoriasDestaque.astro';
 ---
 
 <LayoutBase title="MM Montagens - Home">
@@ -33,14 +34,17 @@ import ClientesCarousel from '../components/ClientesCarousel.astro';
 
             <div class="relative w-[450px] h-[400px] hidden lg:block mr-8">
                 <div class="absolute top-0 right-0 w-[300px] h-[300px] rounded-full border-[8px] border-[#e8e9eb] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-10 bg-white">
-                    <img src="/midia/gancho para painel canaletado branco fundo branco.png" alt="Ganchos de metal" class="w-full h-full object-cover scale-110">
+                    <img src="/midia/gancho/canaletado/gancho-canaletado-preto-fundo-branco.png" alt="Gancho Canaletado Preto" class="w-full h-full object-cover scale-100">
                 </div>
+                
                 <div class="absolute bottom-4 left-0 w-[220px] h-[220px] rounded-full border-[8px] border-[#e8e9eb] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-20 bg-white">
-                    <img src="/midia/barra para gôndola branca fundo branco.png" alt="Suportes de metal" class="w-full h-full object-cover scale-125">
+                    <img src="/midia/barra-expositora/barra-gondola-preta.png" alt="Barra Gondola" class="w-full h-full object-cover scale-105">
                 </div>
             </div>
         </div>
     </section>
+
+    <CategoriasDestaque />
 
     <section class="w-full flex flex-col md:flex-row h-auto min-h-[500px]">
         <div 
