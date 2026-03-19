@@ -1,6 +1,5 @@
 ---
 // src/pages/carrinho.astro
-// Esta página não usa o LayoutBase pois tem um header simplificado focado em conversão.
 ---
 
 <!DOCTYPE html>
@@ -23,6 +22,12 @@
             }
         }
     </script>
+    <style>
+        /* Remove setinhas do input number */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type=number] { -moz-appearance: textfield; }
+    </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-[#f4f7f6]">
 
@@ -45,14 +50,15 @@
         <div class="flex flex-col lg:flex-row gap-8 items-start hidden" id="carrinho-conteudo">
             
             <div class="w-full lg:w-2/3 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                
-                <div class="hidden md:grid grid-cols-[1fr_150px_80px] gap-4 p-4 bg-gray-50 border-b border-gray-200 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                <div class="hidden md:grid grid-cols-[1fr_120px_120px_60px] gap-4 p-4 bg-gray-50 border-b border-gray-200 text-xs font-bold text-gray-500 uppercase tracking-wider">
                     <div>Produto</div>
                     <div class="text-center">Quantidade</div>
+                    <div class="text-right">Subtotal</div>
                     <div class="text-center">Ação</div>
                 </div>
 
-                <div id="lista-carrinho" class="flex flex-col"></div>
+                <div id="lista-carrinho" class="flex flex-col">
+                    </div>
                 
                 <div class="p-4 bg-gray-50 border-t border-gray-200 flex justify-between items-center">
                     <button onclick="limparCarrinho()" class="text-red-500 hover:text-red-700 text-sm font-bold flex items-center gap-2 transition">
@@ -64,28 +70,37 @@
             <div class="w-full lg:w-1/3 bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-8">
                 <h2 class="text-xl font-bold text-gray-800 mb-6 pb-4 border-b border-gray-100">Resumo do Pedido</h2>
                 
-                <div class="flex justify-between items-center mb-4 text-gray-600">
-                    <span>Total de Produtos:</span>
-                    <span id="resumo-total-produtos" class="font-bold text-lg">0</span>
-                </div>
-                
-                <div class="flex justify-between items-center mb-8 text-gray-600">
-                    <span>Total de Peças:</span>
-                    <span id="resumo-total-pecas" class="font-black text-2xl text-mm-blue">0</span>
+                <div class="space-y-4 mb-8">
+                    <div class="flex justify-between items-center text-gray-600">
+                        <span>Total de Produtos:</span>
+                        <span id="resumo-total-produtos" class="font-bold text-lg text-gray-800">0</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center text-gray-600 border-b border-gray-50 pb-4">
+                        <span>Total de Peças:</span>
+                        <span id="resumo-total-pecas" class="font-bold text-lg text-gray-800">0</span>
+                    </div>
+
+                    <div class="pt-2 flex flex-col gap-1">
+                        <span class="text-[10px] font-black text-gray-400 uppercase">Valor Total Estimado</span>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-mm-blue font-bold text-xl">R$</span>
+                            <span id="total-geral-carrinho" class="text-4xl font-black text-mm-blue leading-none">0,00</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-8">
-                    <p class="text-xs text-mm-darkblue leading-relaxed text-center">
+                    <p class="text-[11px] text-mm-darkblue leading-relaxed text-center">
                         <i class="fas fa-info-circle mb-1 text-lg"></i><br>
-                        Nossos consultores analisarão seu pedido e enviarão uma proposta comercial.
+                        Nossos consultores analisarão seu pedido e enviarão uma proposta comercial final com frete e condições.
                     </p>
                 </div>
 
-                <button onclick="enviarParaWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-black text-lg py-4 rounded-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex justify-center items-center gap-3">
-                    <i class="fab fa-whatsapp text-2xl"></i> Enviar Orçamento
+                <button onclick="enviarParaWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-black text-lg py-5 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex justify-center items-center gap-3">
+                    <i class="fab fa-whatsapp text-2xl"></i> ENVIAR ORÇAMENTO
                 </button>
             </div>
-
         </div>
 
         <div id="carrinho-vazio" class="bg-white rounded-xl shadow-sm border border-gray-200 p-16 text-center hidden">
@@ -93,9 +108,9 @@
                 <i class="fas fa-shopping-basket text-4xl"></i>
             </div>
             <h2 class="text-2xl font-black text-gray-800 mb-2">Seu orçamento está vazio!</h2>
-            <p class="text-gray-500 mb-8">Navegue pelas nossas categorias e adicione produtos.</p>
-            <a href="/produtos" class="inline-block bg-mm-blue hover:bg-mm-darkblue text-white font-bold px-8 py-3 rounded-full transition shadow-md">
-                Ver Produtos
+            <p class="text-gray-500 mb-8">Navegue pelas nossas categorias e adicione produtos para solicitar um preço.</p>
+            <a href="/produtos" class="inline-block bg-mm-blue hover:bg-mm-darkblue text-white font-bold px-10 py-4 rounded-full transition shadow-md">
+                VER PRODUTOS
             </a>
         </div>
 
@@ -105,7 +120,6 @@
 
     <script is:inline>
         function renderizarPaginaCarrinho() {
-            // getCarrinho() vem do carrinho.js
             const itens = typeof getCarrinho === 'function' ? getCarrinho() : JSON.parse(localStorage.getItem("mm_montagens_carrinho")) || [];
             
             const container = document.getElementById('lista-carrinho');
@@ -114,6 +128,7 @@
             
             const resumoProdutos = document.getElementById('resumo-total-produtos');
             const resumoPecas = document.getElementById('resumo-total-pecas');
+            const displayTotalGeral = document.getElementById('total-geral-carrinho');
 
             if (itens.length === 0) {
                 areaConteudo.classList.add('hidden');
@@ -126,43 +141,53 @@
             container.innerHTML = ''; 
 
             let totalPecas = 0;
+            let valorTotalCompra = 0;
 
             itens.forEach((item, index) => {
-                // Sincronizado para usar .qty
                 const quantidade = parseInt(item.qty) || 0;
-                totalPecas += quantidade;
+                const precoUnitario = parseFloat(item.preco) || 0;
+                const subtotalItem = quantidade * precoUnitario;
                 
-                let imagemCorrigida = item.img;
-                if(imagemCorrigida && imagemCorrigida.includes("midia/")) {
-                    imagemCorrigida = "/midia/" + imagemCorrigida.split("midia/")[1];
-                }
+                totalPecas += quantidade;
+                valorTotalCompra += subtotalItem;
                 
                 container.innerHTML += `
-                    <div class="grid grid-cols-1 md:grid-cols-[1fr_150px_80px] gap-4 p-4 md:p-6 border-b border-gray-100 items-center hover:bg-gray-50 transition">
+                    <div class="grid grid-cols-1 md:grid-cols-[1fr_120px_120px_60px] gap-4 p-4 md:p-6 border-b border-gray-100 items-center hover:bg-gray-50 transition">
                         <div class="flex items-center gap-4">
                             <div class="w-20 h-20 bg-white border border-gray-200 rounded p-1 flex-shrink-0 flex items-center justify-center">
-                                <img src="${imagemCorrigida}" onerror="this.src='/midia/logo4.png'" alt="${item.nome}" class="max-h-full object-contain mix-blend-multiply">
+                                <img src="${item.img}" onerror="this.src='/midia/logo4.png'" alt="${item.nome}" class="max-h-full object-contain mix-blend-multiply">
                             </div>
                             <div class="flex flex-col">
-                                <h3 class="font-bold text-gray-800 text-[15px] leading-tight md:text-base">${item.nome}</h3>
-                                <span class="text-xs text-gray-400 mt-1">Cód: ${item.codigo}</span>
+                                <h3 class="font-bold text-gray-800 text-sm leading-tight">${item.nome}</h3>
+                                <span class="text-[10px] text-gray-400 uppercase font-black mt-1 tracking-wider">${item.variacao || 'Padrão'}</span>
+                                <span class="text-[11px] text-mm-blue font-bold mt-1">UN: R$ ${precoUnitario.toFixed(2).replace('.', ',')}</span>
                             </div>
                         </div>
 
-                        <div class="flex items-center justify-center mt-4 md:mt-0">
-                            <div class="flex border border-gray-300 rounded-md overflow-hidden bg-white shadow-sm">
-                                <button onclick="alterarQtd(${index}, -1)" class="w-10 h-10 text-gray-500 hover:bg-gray-100 hover:text-mm-blue transition focus:outline-none flex items-center justify-center border-r border-gray-300">
-                                    <i class="fas fa-minus text-xs"></i>
+                        <div class="flex items-center justify-center">
+                            <div class="flex border border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm">
+                                <button onclick="alterarQtd(${index}, -1)" class="w-9 h-10 text-gray-500 hover:bg-gray-100 flex items-center justify-center border-r border-gray-300">
+                                    <i class="fas fa-minus text-[10px]"></i>
                                 </button>
-                                <input type="number" min="1" value="${quantidade}" onchange="atualizarInputManual(${index}, this.value)" class="w-16 h-10 text-center font-bold text-gray-700 outline-none focus:ring-2 focus:ring-mm-blue appearance-none m-0 p-0">
-                                <button onclick="alterarQtd(${index}, 1)" class="w-10 h-10 text-gray-500 hover:bg-gray-100 hover:text-mm-blue transition focus:outline-none flex items-center justify-center border-l border-gray-300">
-                                    <i class="fas fa-plus text-xs"></i>
+                                <input 
+                                    type="number" 
+                                    min="1" 
+                                    value="${quantidade}" 
+                                    onchange="window.atualizarInputManual(${index}, this.value)" 
+                                    class="w-12 h-10 text-center font-bold text-gray-700 text-sm outline-none bg-transparent"
+                                >
+                                <button onclick="alterarQtd(${index}, 1)" class="w-9 h-10 text-gray-500 hover:bg-gray-100 flex items-center justify-center border-l border-gray-300">
+                                    <i class="fas fa-plus text-[10px]"></i>
                                 </button>
                             </div>
                         </div>
 
-                        <div class="flex justify-center mt-2 md:mt-0">
-                            <button onclick="removerItem(${index})" class="text-gray-400 hover:text-red-500 w-10 h-10 rounded-full hover:bg-red-50 transition focus:outline-none" title="Remover Produto">
+                        <div class="text-right font-black text-gray-900 text-sm">
+                            R$ ${subtotalItem.toFixed(2).replace('.', ',')}
+                        </div>
+
+                        <div class="flex justify-center">
+                            <button onclick="removerItem(${index})" class="text-gray-300 hover:text-red-500 transition-colors p-2">
                                 <i class="fas fa-trash-alt text-lg"></i>
                             </button>
                         </div>
@@ -172,57 +197,65 @@
 
             resumoProdutos.innerText = itens.length;
             resumoPecas.innerText = totalPecas;
+            displayTotalGeral.innerText = valorTotalCompra.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
 
-        function alterarQtd(index, valor) {
+        // Funções Globais
+        window.alterarQtd = function(index, valor) {
             let itens = getCarrinho();
             let novaQtd = (parseInt(itens[index].qty) || 1) + valor;
-            
             if (novaQtd >= 1) {
                 itens[index].qty = novaQtd;
-                salvarCarrinho(itens); // salvarCarrinho() vem do carrinho.js
+                salvarCarrinho(itens);
                 renderizarPaginaCarrinho();
             }
-        }
+        };
 
-        function atualizarInputManual(index, valor) {
+        window.atualizarInputManual = function(index, valor) {
             let itens = getCarrinho();
             let novaQtd = parseInt(valor);
+            if (isNaN(novaQtd) || novaQtd < 1) novaQtd = 1;
             
-            if (novaQtd >= 1) {
-                itens[index].qty = novaQtd;
-            } else {
-                itens[index].qty = 1;
-            }
+            itens[index].qty = novaQtd;
             salvarCarrinho(itens);
             renderizarPaginaCarrinho();
-        }
+        };
 
-        function removerItem(index) {
+        window.removerItem = function(index) {
             let itens = getCarrinho();
             itens.splice(index, 1);
             salvarCarrinho(itens);
             renderizarPaginaCarrinho();
-        }
+        };
 
-        function limparCarrinho() {
-            if(confirm("Tem certeza que deseja esvaziar seu orçamento?")) {
+        window.limparCarrinho = function() {
+            if(confirm("Deseja esvaziar seu orçamento?")) {
                 localStorage.removeItem("mm_montagens_carrinho");
                 renderizarPaginaCarrinho();
                 if(typeof atualizarIcones === 'function') atualizarIcones();
             }
-        }
+        };
 
-        function enviarParaWhatsApp() {
+        window.enviarParaWhatsApp = function() {
             const itens = getCarrinho();
-            let texto = "Olá, MM Montagens! Gostaria de um orçamento para os seguintes itens:%0A%0A";
+            let texto = "Olá, MM Montagens! Gostaria de solicitar um orçamento:%0A%0A";
+            let totalGeral = 0;
             
             itens.forEach(i => { 
-                texto += `📦 *${i.qty}x* - ${i.nome} (Cód: ${i.codigo})%0A`; 
+                const preco = parseFloat(i.preco) || 0;
+                const subtotal = i.qty * preco;
+                totalGeral += subtotal;
+                texto += `📦 *${i.qty}x ${i.nome}*%0A`;
+                texto += `🔹 Opção: ${i.variacao}%0A`;
+                texto += `💰 UN: R$ ${preco.toFixed(2).replace('.', ',')} | *SUBTOTAL: R$ ${subtotal.toFixed(2).replace('.', ',')}*%0A%0A`;
             });
             
-            texto += "%0A*Aguardamos o retorno com os valores e prazos de entrega.*";
-            window.open(`https://wa.me/5511932433674?text=${texto}`, "_blank");
+            texto += `---------------------------------%0A`;
+            texto += `✅ *VALOR TOTAL: R$ ${totalGeral.toFixed(2).replace('.', ',')}*%0A%0A`;
+            texto += "Aguardamos o retorno com as condições de frete e faturamento.";
+            
+            // Link corrigido para o seu número de Pernambuco
+            window.open(`https://wa.me/55819932433674?text=${texto}`, "_blank");
         }
 
         window.addEventListener('DOMContentLoaded', renderizarPaginaCarrinho);

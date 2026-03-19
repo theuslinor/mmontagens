@@ -1,0 +1,80 @@
+---
+// src/components/CategoriaPage.astro
+import LayoutBase from '../layouts/LayoutBase.astro';
+
+const { title, categoryName, bannerImg, products } = Astro.props;
+---
+
+<LayoutBase title={title}>
+    <section class="relative w-full h-[200px] flex items-center justify-center overflow-hidden border-t border-mm-blue/20">
+        <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${bannerImg}');`}></div>
+        <div class="absolute inset-0 bg-mm-darkblue/90 mix-blend-multiply"></div>
+        <div class="relative z-10 text-center text-white flex flex-col mt-4">
+            <h1 class="text-[40px] md:text-[60px] font-condensed font-bold leading-none tracking-tight drop-shadow-md uppercase">{categoryName}</h1>
+        </div>
+    </section>
+
+    <section class="w-full py-12 bg-gray-50 min-h-[500px]">
+        <div class="container mx-auto px-8 lg:px-24">
+            <div class="flex justify-between items-center mb-10 border-b border-gray-200 pb-4">
+                <a href="/produtos" class="text-gray-500 hover:text-mm-blue font-semibold flex items-center gap-2 transition">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+                <a href="/carrinho" class="bg-mm-blue text-white px-5 py-2 rounded shadow flex items-center gap-2 hover:bg-mm-darkblue transition">
+                    <i class="fas fa-shopping-cart"></i> <span class="font-bold">Ir para Carrinho</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {products && products.map((p) => (
+                    <div class="bg-white rounded-lg shadow border border-gray-100 overflow-hidden flex flex-col h-full">
+                        <div class="h-[200px] bg-gray-100 flex items-center justify-center p-4">
+                            <img id={`img-${p.id}`} src={p.img} alt={p.name} class="max-h-full object-contain mix-blend-multiply" />
+                        </div>
+
+                        <div class="p-5 flex flex-col flex-1">
+                            <h3 class="font-bold text-gray-800 text-[15px] leading-tight mb-1">{p.name}</h3>
+                            <p class="text-gray-400 text-xs mb-4">Código: {p.code}</p>
+
+                            <div class="mb-4">
+                                <label class="text-[10px] uppercase font-bold text-gray-400 block mb-1">Tamanho / Acabamento</label>
+                                <select 
+                                    id={`select-${p.id}`} 
+                                    class="w-full border border-gray-200 rounded px-2 py-2 text-sm font-semibold focus:border-mm-blue outline-none bg-gray-50"
+                                    onchange={`document.getElementById('price-${p.id}').innerText = this.options[this.selectedIndex].getAttribute('data-price')`}
+                                >
+                                    {p.variants && p.variants.map((v) => (
+                                        <option value={v.label} data-price={v.price.toFixed(2).replace('.', ',')}>
+                                            {v.label} - R$ {v.price.toFixed(2).replace('.', ',')}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div class="mt-auto">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-gray-400 text-xs font-bold uppercase">Preço Un.</span>
+                                    <span class="text-mm-blue font-black text-xl">
+                                        R$ <span id={`price-${p.id}`}>
+                                            {p.variants && p.variants[0] ? p.variants[0].price.toFixed(2).replace('.', ',') : '0,00'}
+                                        </span>
+                                    </span>
+                                </div>
+                                
+                                <div class="flex gap-2">
+                                    <input id={`qty-${p.id}`} type="number" min="1" value="1" class="w-16 border border-gray-300 rounded px-1 text-gray-700 font-bold text-center" />
+                                    <button 
+                                        onclick={`adicionarComVariacao('${p.id}', '${p.name}', '${p.code}', 'img-${p.id}', 'qty-${p.id}', 'select-${p.id}')`}
+                                        class="flex-1 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold rounded py-2 transition shadow flex justify-center items-center gap-2 text-xs"
+                                    >
+                                        <i class="fas fa-cart-plus"></i> ADICIONAR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+</LayoutBase>
