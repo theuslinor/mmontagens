@@ -48,24 +48,24 @@ export const categorias = [
         slug: 'gancho-barra-6mm',
         nome: 'Gancho para Barra de Gôndola 6mm',
         codigo: 'GPB-6MM',
-        img: '/midia/gancho/gancho-gondola/gancho-barra-branco-fundo-branco.png',
+        img: '/midia/gancho/gancho-gondola/gancho-6mm-40cm-preto.png',
         variants: [
-          { cor: 'PINTADO 6mm', tamanho: '20 CM', price: 2.00, img: '/midia/gancho/gancho-gondola/gancho-barra-branco-fundo-branco.png' },
-          { cor: 'PINTADO 6mm', tamanho: '25 CM', price: 2.45, img: '/midia/gancho/gancho-gondola/gancho-barra-branco-fundo-branco.png' },
-          { cor: 'PINTADO 6mm', tamanho: '30 CM', price: 2.90, img: '/midia/gancho/gancho-gondola/gancho-barra-branco-fundo-branco.png' },
+          { cor: 'PINTADO 6mm', tamanho: '20 CM', price: 2.00, img: '/midia/gancho/gancho-gondola/gancho-6mm-20cm-branco.png' },
+          { cor: 'PINTADO 6mm', tamanho: '25 CM', price: 2.45, img: '/midia/gancho/gancho-gondola/gancho-6mm-25cm-branco.png' },
+          { cor: 'PINTADO 6mm', tamanho: '30 CM', price: 2.90, img: '/midia/gancho/gancho-gondola/gancho-6mm-30cm-branco.png' },
           { cor: 'PINTADO 6mm', tamanho: '35 CM', price: 4.60, img: '/midia/gancho/gancho-gondola/gancho-barra-branco-fundo-branco.png' },
-          { cor: 'PINTADO 6mm', tamanho: '40 CM', price: 5.20, img: '/midia/gancho/gancho-gondola/gancho-barra-branco-fundo-branco.png' },
+          { cor: 'PINTADO 6mm', tamanho: '40 CM', price: 5.20, img: '/midia/gancho/gancho-gondola/gancho-6mm-40cm-preto.png' },
         ]
       },
       {
         slug: 'gancho-barra-4-40mm',
         nome: 'Gancho para Barra de Gôndola 4.40mm',
         codigo: 'GPB-440',
-        img: '/midia/gancho/gancho-gondola/gancho-barra-preto-fundo-branco.png',
+        img: '/midia/gancho/gancho-gondola/gancho-440mm-25cm-prateado.png',
         variants: [
-          { cor: 'PINTADO 4.40mm', tamanho: '15 CM', price: 2.10, img: '/midia/gancho/gancho-gondola/gancho-barra-preto-fundo-branco.png' },
-          { cor: 'PINTADO 4.40mm', tamanho: '20 CM', price: 2.50, img: '/midia/gancho/gancho-gondola/gancho-barra-preto-fundo-branco.png' },
-          { cor: 'PINTADO 4.40mm', tamanho: '25 CM', price: 2.80, img: '/midia/gancho/gancho-gondola/gancho-barra-preto-fundo-branco.png' },
+          { cor: 'PINTADO 4.40mm', tamanho: '15 CM', price: 2.10, img: '/midia/gancho/gancho-gondola/gancho-canaletado-15cm-440mm-preto.png' },
+          { cor: 'PINTADO 4.40mm', tamanho: '20 CM', price: 2.50, img: '/midia/gancho/gancho-gondola/gancho-canaletado-20cm-440mm-prata.png' },
+          { cor: 'PINTADO 4.40mm', tamanho: '25 CM', price: 2.80, img: '/midia/gancho/gancho-gondola/gancho-440mm-25cm-prateado.png' },
         ]
       }
     ]
