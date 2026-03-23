@@ -1,0 +1,98 @@
+---
+import LayoutBase from '../../layouts/LayoutBase.astro';
+
+const title = "Cinco formas de manter a sua loja organizada";
+const date = "15 Março, 2023";
+const mainImage = "/midia/blog/abcasa.jpg"; // Use uma imagem de estoque de organização
+---
+
+<LayoutBase title={`${title} - MM Montagens`}>
+    <section class="relative w-full h-[350px] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${mainImage}');`}></div>
+        <div class="absolute inset-0 bg-mm-blue/80 mix-blend-multiply"></div>
+        
+        <div class="relative z-10 container mx-auto px-8 lg:px-24 text-center">
+            <span class="text-white/80 text-sm font-bold uppercase tracking-widest mb-4 block">{date}</span>
+            <h1 class="text-white text-3xl md:text-5xl font-black leading-tight max-w-4xl mx-auto uppercase">
+                {title}
+            </h1>
+        </div>
+    </section>
+
+    <article class="w-full py-20 bg-white">
+        <div class="container mx-auto px-8 lg:px-64">
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p class="text-xl font-medium text-mm-blue mb-10">
+                    Organizar a loja não é apenas estética; é estratégia. Uma boa organização facilita a experiência de compra, otimiza o giro de estoque e melhora a rotina da sua equipe.
+                </p>
+
+                <div class="space-y-16">
+                    <section>
+                        <h2 class="text-3xl font-bold text-mm-blue mb-6 flex items-center gap-4">
+                            <span class="bg-mm-yellow text-mm-darkblue w-10 h-10 rounded-lg flex items-center justify-center text-base">1</span>
+                            Boa setorização
+                        </h2>
+                        <p>A setorização é intuitiva. O segredo é deixar produtos que "se conversam" próximos, facilitando para o consumidor visualizar os itens em sua própria rotina. Como explica a especialista Viviane Taiacol: <em>"Apresentar os produtos ambientados já é meio caminho andado para a venda."</em></p>
+                    </section>
+
+                    <section class="bg-gray-50 p-8 rounded-3xl border-l-8 border-mm-blue">
+                        <h2 class="text-3xl font-bold text-mm-blue mb-6 flex items-center gap-4">
+                            <span class="bg-mm-blue text-white w-10 h-10 rounded-lg flex items-center justify-center text-base">2</span>
+                            Facilitar o acesso
+                        </h2>
+                        <p class="mb-4 text-mm-darkblue font-bold">Regra técnica de exposição:</p>
+                        <ul class="list-disc pl-6 space-y-2 mb-4">
+                            <li><strong>Altura Máxima:</strong> 1,80 metros.</li>
+                            <li><strong>Altura Mínima:</strong> 50 centímetros do chão.</li>
+                        </ul>
+                        <p>Lembre-se da regra do esforço mínimo: o ser humano prefere utilizar o ângulo de 90 graus do braço. Facilitar o acesso dá independência ao consumidor.</p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-3xl font-bold text-mm-blue mb-6 flex items-center gap-4">
+                            <span class="bg-mm-yellow text-mm-darkblue w-10 h-10 rounded-lg flex items-center justify-center text-base">3</span>
+                            Etiquetar todas as peças
+                        </h2>
+                        <p>Etiquetar é lei e agiliza a compra. Padronize o local da etiqueta (ex: sempre no canto superior direito) para criar o hábito no consumidor, tornando o processo de visualização de preços automático e fluido.</p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-3xl font-bold text-mm-blue mb-6 flex items-center gap-4">
+                            <span class="bg-mm-yellow text-mm-darkblue w-10 h-10 rounded-lg flex items-center justify-center text-base">4</span>
+                            Exposição com "respiro"
+                        </h2>
+                        <p>Cuidado com produtos apertados demais. Além de dificultar a retirada, pode causar acidentes com peças de vidro. Dê "respiro" entre as peças para que o cliente consiga manusear o produto com segurança e conforto.</p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-3xl font-bold text-mm-blue mb-6 flex items-center gap-4">
+                            <span class="bg-mm-yellow text-mm-darkblue w-10 h-10 rounded-lg flex items-center justify-center text-base">5</span>
+                            Capacitar os colaboradores
+                        </h2>
+                        <p>A organização se estende ao atendimento. Sua equipe deve saber exatamente onde cada item está e quais as rotinas de reposição. <em>"Quem vai à loja física já fez sua pesquisa e quer comprar; aproveite esse momento"</em>, finaliza Taiacol.</p>
+                    </section>
+                </div>
+
+                <div class="mt-20 pt-10 border-t border-gray-100 italic text-sm text-gray-400 text-right">
+                    Fonte: ABCasa
+                </div>
+
+                <div class="mt-10 p-10 bg-mm-blue rounded-[40px] text-center text-white shadow-2xl">
+                    <h4 class="text-2xl font-bold mb-6">Sua loja organizada vende mais.</h4>
+                    <p class="mb-8 opacity-90">Temos gôndolas, ganchos e balcões ideais para sua setorização.</p>
+                    <a href="/produtos" class="inline-block bg-mm-yellow hover:bg-yellow-500 text-mm-darkblue font-bold py-4 px-12 rounded-full transition-all shadow-lg transform hover:-translate-y-1">
+                        Ver Soluções de Organização
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-20 pt-8 border-t border-gray-100">
+                <a href="/blog" class="flex items-center gap-2 text-mm-blue font-bold hover:text-mm-darkblue transition group">
+                    <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                    Voltar para o Blog
+                </a>
+            </div>
+        </div>
+    </article>
+</LayoutBase>

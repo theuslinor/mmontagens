@@ -1,0 +1,94 @@
+---
+import LayoutBase from '../../layouts/LayoutBase.astro';
+
+const title = "5 Dicas para montar uma loja que se destaque";
+const date = "25 Janeiro, 2023";
+const mainImage = "/midia/blog/montar_loja.jpg";
+---
+
+<LayoutBase title={`${title} - MM Montagens`}>
+    <section class="relative w-full h-[350px] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${mainImage}');`}></div>
+        <div class="absolute inset-0 bg-mm-blue/80 mix-blend-multiply"></div>
+        
+        <div class="relative z-10 container mx-auto px-8 lg:px-24 text-center">
+            <span class="text-white/80 text-sm font-bold uppercase tracking-widest mb-4 block">{date}</span>
+            <h1 class="text-white text-3xl md:text-5xl font-black leading-tight max-w-4xl mx-auto uppercase">
+                {title}
+            </h1>
+        </div>
+    </section>
+
+    <article class="w-full py-20 bg-white">
+        <div class="container mx-auto px-8 lg:px-64">
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p class="text-xl font-light italic text-mm-blue mb-12 border-l-4 border-mm-yellow pl-6">
+                    "Manter a barra de qualidade elevada garante que todo o esforço seja refletido nas prateleiras e ocasione boas vendas."
+                </p>
+
+                <p class="mb-12">
+                    Existem sugestões que valem para qualquer loja e ramo, sendo quase universais. Nós, da <strong>MM Montagens</strong>, levantamos as 5 principais para ajudar você a transformar seu ponto de venda:
+                </p>
+
+                <div class="space-y-12">
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="bg-mm-blue text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0">1</div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-mm-blue mb-3 m-0">Capriche na fachada</h2>
+                            <p>A fachada é o seu cartão de visitas. Capriche nos muros, paredes e placas para chamar a atenção positivamente. É vital transmitir os valores da marca por meio de cores e grafismos que conversem com seu público.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="bg-mm-blue text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0">2</div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-mm-blue mb-3 m-0">Invista em uma boa iluminação</h2>
+                            <p>É algo universal: as pessoas fogem de ambientes escuros. Um local claro e limpo transmite confiança. O uso de <strong>vidros e balcões modulados</strong> ajuda a compor uma loja iluminada e destaca o que realmente importa: o produto.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="bg-mm-blue text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0">3</div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-mm-blue mb-3 m-0">Pense na disposição dos produtos</h2>
+                            <p>Se o produto não é visto, ele não é vendido. Estruture uma organização atrativa usando <strong>ganchos de painel canaletado</strong>. Por serem fáceis de manejar, permitem que você mude o layout da loja sempre que chegar uma coleção nova.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="bg-mm-blue text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0">4</div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-mm-blue mb-3 m-0">Defina uma "Zona Quente"</h2>
+                            <p>Identifique onde os consumidores mais passam. Use esse espaço estratégico para dispor lançamentos, itens de moda ou promoções imbatíveis. É o lugar de "ouro" da sua loja.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="bg-mm-blue text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0">5</div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-mm-blue mb-3 m-0">Aposte na climatização</h2>
+                            <p>Clima não é só temperatura. Envolve o som ambiente (música certa para o público) e, principalmente, o fator humano: como a equipe trata o cliente. Um ambiente agradável faz o cliente querer ficar mais tempo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-20 p-12 bg-gray-900 rounded-[40px] text-center text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-mm-blue opacity-20 rounded-full -mr-16 -mt-16"></div>
+                    <h4 class="text-2xl font-bold mb-6">Sua loja merece o melhor destaque.</h4>
+                    <p class="mb-10 text-gray-400">Temos a linha completa de balcões, ganchos e suportes para sua reforma.</p>
+                    <a href="/contato" class="inline-block bg-white text-mm-darkblue font-bold py-4 px-12 rounded-full transition-all hover:bg-mm-yellow hover:scale-105 shadow-lg">
+                        Falar com um Consultor
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-20 pt-8 border-t border-gray-100 flex justify-between items-center">
+                <a href="/blog" class="flex items-center gap-2 text-mm-blue font-bold hover:text-mm-darkblue transition group">
+                    <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                    Voltar para o Blog
+                </a>
+            </div>
+        </div>
+    </article>
+</LayoutBase>

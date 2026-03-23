@@ -1,0 +1,77 @@
+---
+import LayoutBase from '../../layouts/LayoutBase.astro';
+
+const title = "5 vantagens em utilizar ganchos para painel canaletado";
+const date = "08 Fevereiro, 2023";
+const mainImage = "/midia/blog/vantagens.jpg";
+---
+
+<LayoutBase title={`${title} - MM Montagens`}>
+    <section class="relative w-full h-[350px] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${mainImage}');`}></div>
+        <div class="absolute inset-0 bg-mm-blue/80 mix-blend-multiply"></div>
+        
+        <div class="relative z-10 container mx-auto px-8 lg:px-24 text-center">
+            <span class="text-white/80 text-sm font-bold uppercase tracking-widest mb-4 block">{date}</span>
+            <h1 class="text-white text-3xl md:text-5xl font-black leading-tight max-w-4xl mx-auto uppercase">
+                {title}
+            </h1>
+        </div>
+    </section>
+
+    <article class="w-full py-20 bg-white">
+        <div class="container mx-auto px-8 lg:px-64">
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p class="text-xl font-light italic text-mm-blue mb-12 border-l-4 border-mm-yellow pl-6">
+                    "Se a primeira impressão é a que fica, então, é essencial causar uma impressão positiva no cliente para que ele fique, compre e volte."
+                </p>
+
+                <p class="mb-8">
+                    Despertar a atenção positiva é necessário para uma loja de qualquer tamanho e segmento. Por isso, listamos alguns motivos que mostram como é vantajoso utilizar ganchos para painel canaletado no interior da loja para dispor produtos:
+                </p>
+
+                <div class="space-y-10">
+                    <div>
+                        <h2 class="text-2xl font-bold text-mm-blue mb-3">1. Visibilidade</h2>
+                        <p>Os ganchos para painel canaletado podem ter de 05cm até 30cm e possuem diversas cores (branco, preto, cromado e zincado). Essa diversidade faz com que ele se adeque a qualquer tipo de produto e faça com que ele seja disposto de maneira atrativa e clara ao cliente.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold text-mm-blue mb-3">2. Praticidade</h2>
+                        <p>Por ser um produto de fácil manejo, é possível mudar a disposição dos ganchos e produtos com facilidade. Ele também se notabiliza pela sua facilidade de instalação e manutenção.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold text-mm-blue mb-3">3. Durabilidade</h2>
+                        <p>Estruturados em arame de 4.5 milímetros de espessura e com uma reforçada solda de três pontos em referência internacional, os ganchos da <strong>MM Montagens</strong> têm longevidade mais alta pela confecção reforçada.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold text-mm-blue mb-3">4. Agilidade</h2>
+                        <p>Pela versatilidade do tamanho e a possibilidade personalizada de aquisição, é possível solicitar quantos ganchos forem necessários para a realidade de cada loja. A entrega é feita de maneira rápida e a instalação leva minutos.</p>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold text-mm-blue mb-3">5. Custo-Benefício</h2>
+                        <p>Além da resistência, o investimento em ganchos canaletados é um dos mais baixos para quem busca renovar o visual da loja sem gastar muito, permitindo uma alta rotatividade de estoque com organização impecável.</p>
+                    </div>
+                </div>
+
+                <div class="mt-16 p-10 bg-gray-50 rounded-3xl border border-dashed border-gray-200 text-center">
+                    <h4 class="text-xl font-bold text-mm-blue mb-6">Precisa organizar sua loja agora?</h4>
+                    <a href="/produtos/categoria-ganchos" class="inline-block bg-mm-blue hover:bg-mm-darkblue text-white font-bold py-4 px-10 rounded-full transition-all hover:shadow-xl hover:-translate-y-1">
+                        Conheça nossa linha completa de Ganchos
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-20 pt-8 border-t border-gray-100 flex justify-between items-center">
+                <a href="/blog" class="flex items-center gap-2 text-mm-blue font-bold hover:text-mm-darkblue transition group">
+                    <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                    Voltar para o Blog
+                </a>
+            </div>
+        </div>
+    </article>
+</LayoutBase>

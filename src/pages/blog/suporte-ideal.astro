@@ -1,0 +1,90 @@
+---
+import LayoutBase from '../../layouts/LayoutBase.astro';
+
+const title = "Qual o tipo de suporte ideal para a sua loja?";
+const date = "01 Fevereiro, 2023";
+const mainImage = "/midia/blog/tipo_ideal.png";
+---
+
+<LayoutBase title={`${title} - MM Montagens`}>
+    <section class="relative w-full h-[350px] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${mainImage}');`}></div>
+        <div class="absolute inset-0 bg-mm-blue/80 mix-blend-multiply"></div>
+        
+        <div class="relative z-10 container mx-auto px-8 lg:px-24 text-center">
+            <span class="text-white/80 text-sm font-bold uppercase tracking-widest mb-4 block">{date}</span>
+            <h1 class="text-white text-3xl md:text-5xl font-black leading-tight max-w-4xl mx-auto uppercase">
+                {title}
+            </h1>
+        </div>
+    </section>
+
+    <article class="w-full py-20 bg-white">
+        <div class="container mx-auto px-8 lg:px-64">
+            
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p class="text-xl font-light italic text-mm-blue mb-12 border-l-4 border-mm-yellow pl-6">
+                    "Como é possível vender um item que os clientes não visualizam ou não veem valor em sua compra?"
+                </p>
+
+                <p class="mb-8">
+                    Depois de estudar o mercado em que se pretende trabalhar, é imprescindível desenvolver como os seus produtos serão dispostos. Afinal, a exposição correta gera valor. 
+                    Dentre dezenas de possibilidades, os <strong>ganchos para painéis canaletados</strong> são os que melhor se adequam ao comércio pela versatilidade e facilidade de manejo.
+                </p>
+
+                <p class="mb-12">
+                    Com mais de 18 anos no mercado, a <strong>MM Montagens</strong> sugere as melhores combinações para nichos específicos:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-mm-blue">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fas fa-gem text-mm-blue text-2xl"></i>
+                            <h2 class="text-xl font-bold text-mm-blue m-0">Bijouterias</h2>
+                        </div>
+                        <p class="text-sm">Segmento onde os ganchos de <strong>5 e 10cm</strong> são reis. Como os itens são pequenos (brincos, anéis), esses tamanhos garantem que o painel não fique visualmente poluído. Cores indicadas: Zincado, Branco ou Preto.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-mm-blue">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fas fa-mobile-alt text-mm-blue text-2xl"></i>
+                            <h2 class="text-xl font-bold text-mm-blue m-0">Eletrônicos</h2>
+                        </div>
+                        <p class="text-sm">Capas de celular e cabos exigem mais espaço. O ideal é utilizar ganchos de <strong>20 a 30cm</strong> para permitir que o cliente veja o estoque disponível atrás da primeira peça exposta.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-mm-blue">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fas fa-store text-mm-blue text-2xl"></i>
+                            <h2 class="text-xl font-bold text-mm-blue m-0">Lojas de 1,99</h2>
+                        </div>
+                        <p class="text-sm">Pela variedade enorme, o segredo é o <strong>mix</strong>. Mesclar ganchos maiores e menores permite que você exponha desde utensílios de cozinha até ferramentas no mesmo painel.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-2xl border-b-4 border-mm-blue">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fas fa-shopping-bag text-mm-blue text-2xl"></i>
+                            <h2 class="text-xl font-bold text-mm-blue m-0">Lojas de Shopping</h2>
+                        </div>
+                        <p class="text-sm">Ambiente nobre exige acabamento refinado. Indicamos exclusivamente os ganchos <strong>Cromados</strong>, que trazem um brilho e uma percepção de luxo muito maior ao ponto de venda.</p>
+                    </div>
+                </div>
+
+                <div class="mt-16 p-10 bg-mm-blue rounded-3xl text-center text-white shadow-xl">
+                    <h4 class="text-2xl font-bold mb-4">Quer o suporte ideal para o seu nicho?</h4>
+                    <p class="mb-8 opacity-90 text-white">Temos ganchos de todos os tamanhos e acabamentos à pronta entrega.</p>
+                    <a href="/produtos" class="inline-block bg-mm-yellow hover:bg-yellow-500 text-mm-darkblue font-bold py-4 px-10 rounded-full transition-all transform hover:scale-105">
+                        Ver Catálogo de Produtos
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-20 pt-8 border-t border-gray-100 flex justify-between items-center">
+                <a href="/blog" class="flex items-center gap-2 text-mm-blue font-bold hover:text-mm-darkblue transition group">
+                    <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                    Voltar para o Blog
+                </a>
+            </div>
+        </div>
+    </article>
+</LayoutBase>
