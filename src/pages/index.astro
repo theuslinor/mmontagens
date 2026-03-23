@@ -2,16 +2,35 @@
 import LayoutBase from '../layouts/LayoutBase.astro';
 import ClientesCarousel from '../components/ClientesCarousel.astro';
 import CategoriasDestaque from '../components/CategoriasDestaque.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// 1. Escaneia a pasta no momento do BUILD
+const fotosDir = path.join(process.cwd(), 'public/midia/fotos-destaques');
+let fotosLista = [];
+
+try {
+    if (fs.existsSync(fotosDir)) {
+        fotosLista = fs.readdirSync(fotosDir)
+            // Filtra imagens e ignora arquivos ocultos do sistema (tipo .DS_Store ou Thumbs.db)
+            .filter(file => /\.(png|jpe?g|webp|avif|svg)$/i.test(file))
+            .map(file => `/midia/fotos-destaques/${file}`);
+    }
+} catch (e) {
+    console.error("Erro ao ler a pasta de fotos:", e);
+}
+
+// Se a pasta estiver vazia, coloca uma imagem padrão pra não quebrar o layout
+if (fotosLista.length === 0) {
+    fotosLista = ["/midia/gancho/canaletado/gancho-canaletado-preto-fundo-branco.png"];
+}
 ---
 
 <LayoutBase title="MM Montagens - Home">
 
     <style>
-        .clip-diagonal {
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
-        }
-        .bg-diagonal-wrapper {
-            background: linear-gradient(to bottom right, #ffffff 50%, #f7f7f7 50%);
+        #hero-img-1, #hero-img-2 {
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
         }
     </style>
 
@@ -23,9 +42,9 @@ import CategoriasDestaque from '../components/CategoriasDestaque.astro';
         <div class="container mx-auto px-8 lg:px-24 relative z-10 flex justify-between items-center w-full">
             <div class="max-w-xl">
                 <h1 class="flex flex-col gap-0">
-                    <span class="text-white font-bold text-[55px] leading-tight tracking-wide">SOLUÇÕES</span>
-                    <span class="text-[#EDC241] font-light text-[45px] leading-none tracking-widest -mt-2">PERSONALIZADAS</span>
-                    <span class="text-white font-bold text-[42px] leading-tight tracking-wide mt-2">PARA O SEU NÉGOCIO</span>
+                    <span class="text-white font-bold text-[55px] leading-tight tracking-wide uppercase">Soluções</span>
+                    <span class="text-[#EDC241] font-light text-[45px] leading-none tracking-widest -mt-2 uppercase">Personalizadas</span>
+                    <span class="text-white font-bold text-[42px] leading-tight tracking-wide mt-2 uppercase">Para o seu negócio</span>
                 </h1>
                 <a href="/quem-somos" class="inline-block mt-8 px-6 py-2 rounded border border-white text-white font-light text-lg hover:bg-white hover:text-mm-dark transition">
                     Saiba mais
@@ -34,106 +53,65 @@ import CategoriasDestaque from '../components/CategoriasDestaque.astro';
 
             <div class="relative w-[450px] h-[400px] hidden lg:block mr-8">
                 <div class="absolute top-0 right-0 w-[300px] h-[300px] rounded-full border-[8px] border-[#e8e9eb] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-10 bg-white">
-                    <img src="/midia/gancho/canaletado/gancho-canaletado-preto-fundo-branco.png" alt="Gancho Canaletado Preto" class="w-full h-full object-cover scale-100">
+                    <img id="hero-img-1" src={fotosLista[0]} alt="MM Montagens" class="w-full h-full object-cover">
                 </div>
                 
                 <div class="absolute bottom-4 left-0 w-[220px] h-[220px] rounded-full border-[8px] border-[#e8e9eb] overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-20 bg-white">
-                    <img src="/midia/barra-expositora/barra-gondola-preta.png" alt="Barra Gondola" class="w-full h-full object-cover scale-105">
+                    <img id="hero-img-2" src={fotosLista[1] || fotosLista[0]} alt="MM Montagens" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
     </section>
+
+    <div id="slideshow-data" data-photos={JSON.stringify(fotosLista)}></div>
 
     <CategoriasDestaque />
 
-    <section class="w-full flex flex-col md:flex-row h-auto min-h-[500px]">
-        <div 
-            class="w-full md:w-[40%] bg-cover bg-center" 
-            style="background-image: url('/midia/fundo.png'); min-height: 400px;">
-        </div>
-        
-        <div class="w-full md:w-[60%] bg-mm-blue relative flex items-center p-12 lg:p-20 overflow-hidden">
-            <div class="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-overlay" style="background-image: url('https://images.unsplash.com/photo-1565620731358-e8c156f7e918?auto=format&fit=crop&q=80');"></div>
-            
-            <div class="relative z-10 w-full">
-                <h3 class="text-white text-sm font-bold uppercase tracking-wider mb-2">POR QUE ESCOLHER A MM MONTAGENS?</h3>
-                <h2 class="text-white text-[32px] md:text-[40px] font-light mb-12 leading-tight">
-                    A MM Montagens é sinônimo de <strong class="font-extrabold">QUALIDADE.</strong>
-                </h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-8 mb-12">
-                    <div class="flex items-center gap-4 text-white">
-                        <i class="fas fa-coins text-4xl opacity-90"></i>
-                        <span class="text-xl font-light leading-tight">Ótimo custo<br>benefício</span>
-                    </div>
-                    <div class="flex items-center gap-4 text-white">
-                        <i class="fas fa-boxes-stacked text-4xl opacity-90"></i>
-                        <span class="text-xl font-light leading-tight">Variedade de<br>produtos</span>
-                    </div>
-                    <div class="flex items-center gap-4 text-white">
-                        <i class="fas fa-truck text-4xl opacity-90"></i>
-                        <span class="text-xl font-light leading-tight">Entrega para<br>todo o Brasil</span>
-                    </div>
-                    <div class="flex items-center gap-4 text-white">
-                        <i class="fas fa-award text-4xl opacity-90"></i>
-                        <span class="text-xl font-light leading-tight">Qualidade<br>nos produtos</span>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap gap-4">
-                    <a href="/quem-somos" class="bg-[#0e6ba0] hover:bg-[#0b547d] transition text-white font-bold py-3 px-8 rounded text-sm">
-                        Saiba Mais
-                    </a>
-                    <a href="/produtos" class="bg-white hover:bg-gray-100 transition text-[#0e6ba0] font-bold py-3 px-8 rounded text-sm shadow-md">
-                        Conheça nossos produtos
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="w-full pt-20 pb-12 bg-white relative">
-        <div class="container mx-auto px-8 lg:px-24">
-            <div class="text-center mb-12">
-                <h3 class="text-mm-blue text-xs font-bold uppercase tracking-widest mb-2">NOSSO BLOG</h3>
-                <h2 class="text-gray-500 text-4xl font-bold">Veja as últimas notícias</h2>
+        <div class="container mx-auto px-8 lg:px-24 text-center">
+            <h3 class="text-mm-blue text-xs font-bold uppercase tracking-widest mb-2">NOSSO BLOG</h3>
+            <h2 class="text-gray-500 text-4xl font-bold mb-12">Veja as últimas notícias</h2>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="flex flex-col group cursor-pointer">
-                    <div class="h-[220px] overflow-hidden bg-gray-200 mb-4 relative">
-                        <img src="/midia/blog/vantagens.jpg" alt="Ganchos" class="w-full h-full object-cover grayscale opacity-70 group-hover:scale-105 transition duration-500">
-                    </div>
-                    <h4 class="text-mm-blue text-xl font-bold leading-tight mb-3">5 vantagens em utilizar ganchos para painel canaletado</h4>
-                    <p class="text-gray-400 text-xs">08 Fevereiro 2023</p>
-                </div>
-                
-                <div class="flex flex-col group cursor-pointer">
-                    <div class="h-[220px] overflow-hidden bg-gray-200 mb-4">
-                        <img src="/midia/blog/tipo_ideal.png" alt="Loja" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <h4 class="text-mm-blue text-xl font-bold leading-tight mb-3">Qual o tipo de suporte ideal para a sua loja?</h4>
-                    <p class="text-gray-400 text-xs">01 Fevereiro 2023</p>
-                </div>
-
-                <div class="flex flex-col group cursor-pointer">
-                    <div class="h-[220px] overflow-hidden bg-gray-200 mb-4">
-                        <img src="/midia/blog/montar_loja.jpg" alt="Loja de roupas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <h4 class="text-mm-blue text-xl font-bold leading-tight mb-3">5 Dicas para montar uma loja que se destaque</h4>
-                    <p class="text-gray-400 text-xs">25 Janeiro 2023</p>
-                </div>
-            </div>
-        </div>
     </section>
 
-    <div class="w-full h-[100px] bg-mm-light" style="clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%); margin-top: -100px; position: relative; z-index: 10;"></div>
-
-    <section class="w-full py-16 bg-mm-light relative z-0">
-        
+    <section class="w-full py-16 bg-mm-light relative">
         <ClientesCarousel />
-        </div>
     </section>
 
-    
 </LayoutBase>
+
+<script>
+    const dataEl = document.getElementById('slideshow-data');
+    const fotos = JSON.parse(dataEl.dataset.photos || '[]');
+    
+    const img1 = document.getElementById('hero-img-1') as HTMLImageElement;
+    const img2 = document.getElementById('hero-img-2') as HTMLImageElement;
+
+    if (fotos.length > 0 && img1 && img2) {
+        
+        const trocar = () => {
+            // Fade out
+            img1.style.opacity = '0';
+            img2.style.opacity = '0';
+            img1.style.transform = 'scale(0.95)';
+
+            setTimeout(() => {
+                // Sorteia novas imagens
+                const idx1 = Math.floor(Math.random() * fotos.length);
+                let idx2 = Math.floor(Math.random() * fotos.length);
+                if (fotos.length > 1) while(idx2 === idx1) idx2 = Math.floor(Math.random() * fotos.length);
+
+                // Troca a fonte (usando encodeURI para evitar quebra com espaços)
+                img1.src = encodeURI(fotos[idx1]);
+                img2.src = encodeURI(fotos[idx2]);
+
+                // Fade in
+                img1.style.opacity = '1';
+                img2.style.opacity = '1';
+                img1.style.transform = 'scale(1)';
+            }, 800);
+        };
+
+        setInterval(trocar, 4500);
+    }
+</script>
