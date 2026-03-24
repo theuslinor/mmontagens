@@ -160,6 +160,7 @@ export const categorias = [
           '/midia/gondolas/mesas-planejadas/mesa-planejada.jpeg',
           '/midia/gondolas/mesas-planejadas/mesa-planejada-1.jpeg',
           '/midia/gondolas/mesas-planejadas/mesa-planejada-2.jpeg',
+          '/midia/gondolas/mesas-planejadas/mesa-planejada-3.jpeg',
         ],
         variants: []
       }
