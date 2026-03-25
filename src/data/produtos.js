@@ -165,5 +165,98 @@ export const categorias = [
         variants: []
       }
     ]
-  }
+  },
+  // =========================================================================
+// CATEGORIA: GÔNDOLAS, ESTANTES E PROJETOS
+// =========================================================================
+{
+  id: 'gondolas',
+  nome: 'Gôndolas',
+  banner: 'https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?auto=format&fit=crop&q=80',
+  items: [
+    {
+      slug: 'estantes-planejadas',
+      nome: 'Estantes Planejadas',
+      codigo: 'GON-EST',
+      img: '/midia/gondolas/estantes-planejadas/estante-planejada-1.jpeg',
+      images: [
+        '/midia/gondolas/estantes-planejadas/estante-industrial-planejada.jpeg',
+        '/midia/gondolas/estantes-planejadas/estante-industrial-planejada-1.jpeg',
+        '/midia/gondolas/estantes-planejadas/estante-parede.jpeg',
+        '/midia/gondolas/estantes-planejadas/estante-parede-2.jpeg',
+        '/midia/gondolas/estantes-planejadas/estante-parede-3.jpeg',
+        '/midia/gondolas/estantes-planejadas/estante-parede-4.jpeg',
+        '/midia/gondolas/estantes-planejadas/estante-planejada-1.jpeg',
+        '/midia/gondolas/estantes-planejadas/estante-suspensa.jpeg',
+        '/midia/gondolas/estantes-planejadas/estante-suspensa-1.jpeg'
+      ],
+      variants: []
+    },
+    {
+      slug: 'gondolas-planejadas',
+      nome: 'Gôndolas Planejadas',
+      codigo: 'GON-CEN',
+      img: '/midia/gondolas/gondolas-planejadas/gondola-1.jpeg',
+      images: [
+        '/midia/gondolas/gondolas-planejadas/gondola-1.jpeg',
+        '/midia/gondolas/gondolas-planejadas/gondola-2.jpeg',
+        '/midia/gondolas/gondolas-planejadas/gondola-expositora.jpeg',
+        '/midia/gondolas/gondolas-planejadas/gondola-expositora-1.jpeg',
+        '/midia/gondolas/gondolas-planejadas/gondola-expositora-2.jpeg',
+        '/midia/gondolas/gondolas-planejadas/gondola-expositora-3.jpeg',
+        '/midia/gondolas/gondolas-planejadas/gondolas.jpeg'
+      ],
+      variants: []
+    },
+    {
+      slug: 'mesas-planejadas',
+      nome: 'Mesas Planejadas',
+      codigo: 'GON-MIX',
+      img: '/midia/gondolas/mesas-planejadas/mesa-planejada.jpeg',
+      images: [
+        '/midia/gondolas/mesas-planejadas/mesa-planejada.jpeg',
+        '/midia/gondolas/mesas-planejadas/mesa-planejada-1.jpeg',
+        '/midia/gondolas/mesas-planejadas/mesa-planejada-2.jpeg',
+        '/midia/gondolas/mesas-planejadas/mesa-planejada-3.jpeg',
+      ],
+      variants: []
+    }
+  ]
+},
+
+// =========================================================================
+// CATEGORIA: BALCÕES MODULARES DE VIDRO (NOVO)
+// =========================================================================
+{
+  id: 'balcoes',
+  nome: 'Balcões de Vidro',
+  banner: 'https://images.unsplash.com/photo-1604713503825-e64938d29738?auto=format&fit=crop&q=80',
+  items: [
+    {
+      slug: 'balcao-modular-expositor-longo',
+      nome: 'Balcão Modular de Vidro (Longo)',
+      codigo: 'BAL-01',
+      img: '/midia/balcoes-modulares-vidro/balcao-modular.jpeg',
+      // Deixando apenas 1 imagem no array, o slider automático não inicia
+      images: ['/midia/balcoes-modulares-vidro/balcao-modular.jpeg'],
+      variants: [] 
+    },
+    {
+      slug: 'balcao-vitrine-quadrado',
+      nome: 'Balcão Vitrine Modular',
+      codigo: 'BAL-02',
+      img: '/midia/balcoes-modulares-vidro/balcao-modular-1.jpeg',
+      images: ['/midia/balcoes-modulares-vidro/balcao-modular-1.jpeg'],
+      variants: []
+    },
+    {
+      slug: 'expositor-vidro-balcao-baixo',
+      nome: 'Expositor de Vidro Baixo',
+      codigo: 'BAL-03',
+      img: '/midia/balcoes-modulares-vidro/balcao-modular-2.jpeg',
+      images: ['/midia/balcoes-modulares-vidro/balcao-modular-2.jpeg'],
+      variants: []
+    }
+  ]
+}
 ];

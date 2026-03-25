@@ -3,6 +3,7 @@ import LayoutBase from '../layouts/LayoutBase.astro';
 ---
 
 <LayoutBase title="Nossas Categorias - MM Montagens">
+    
     <section class="relative w-full h-[280px] flex items-center justify-center overflow-hidden border-t border-mm-blue/20">
         <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80');"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-[#1489c8]/95 via-[#1489c8]/85 to-[#0e6ba0]/95 mix-blend-multiply"></div>
@@ -50,7 +51,7 @@ import LayoutBase from '../layouts/LayoutBase.astro';
                         src="/midia/gondolas/gondolas-planejadas/gondolas.jpeg" 
                         alt="Gôndolas e Estantes" 
                         class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
-                        onerror="this.onerror=null; this.src='this.src='/midia/logo4.png'"
+                        onerror="this.src='/midia/logo4.png'"
                     >
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition duration-300"></div>
                     <div class="absolute bottom-6 left-6 right-6 text-white">
@@ -69,6 +70,20 @@ import LayoutBase from '../layouts/LayoutBase.astro';
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition duration-300"></div>
                     <div class="absolute bottom-6 left-6 right-6 text-white">
                         <h3 class="font-black text-[22px] leading-tight mb-2 uppercase">Suportes Especializados</h3>
+                        <span class="text-mm-yellow text-sm font-bold flex items-center gap-2">Ver produtos <i class="fas fa-arrow-right text-xs"></i></span>
+                    </div>
+                </a>
+
+                <a href="/produtos/categoria-balcoes" class="relative w-full h-[300px] bg-white rounded-2xl overflow-hidden group cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500">
+                    <img 
+                        src="/midia/balcoes-modulares-vidro/balcao-modular-1.jpeg" 
+                        alt="Balcões Modulares" 
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                        onerror="this.src='/midia/logo4.png'"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition duration-300"></div>
+                    <div class="absolute bottom-6 left-6 right-6 text-white">
+                        <h3 class="font-black text-[22px] leading-tight mb-2 uppercase">Balcões Modulares de Vidro</h3>
                         <span class="text-mm-yellow text-sm font-bold flex items-center gap-2">Ver produtos <i class="fas fa-arrow-right text-xs"></i></span>
                     </div>
                 </a>
