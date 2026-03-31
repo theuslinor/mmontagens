@@ -87,7 +87,7 @@ const precoInicial = temVariantes ? prod.variants[0].price : 0;
                                 <div class="flex flex-wrap gap-2">
                                     {coresUnicas.map((cor, index) => (
                                         <button 
-                                            class={`color-btn px-6 py-2 border-2 rounded-xl font-bold text-sm transition-all ${index === 0 ? 'border-mm-blue text-mm-blue bg-blue-50' : 'border-gray-200 text-gray-400'}`}
+                                            class="color-btn px-6 py-2 border-2 rounded-xl font-bold text-sm transition-all border-gray-200 text-gray-400 bg-white"
                                             onclick={`window.mudarCor('${cor}', this)`}
                                         >
                                             {cor}
@@ -148,7 +148,10 @@ const precoInicial = temVariantes ? prod.variants[0].price : 0;
     let corSelecionada = temVariantes ? variants[0].cor : "PADRÃO";
     let tamanhoSelecionado = temVariantes ? variants[0].tamanho : "ÚNICO";
 
-    // --- LÓGICA DO SLIDER (SÓ PARA PROJETOS) ---
+    const activeClasses = ['border-mm-blue', 'text-mm-blue', 'bg-blue-50'];
+    const inactiveClasses = ['border-gray-200', 'text-gray-400', 'bg-white'];
+
+    // --- LÓGICA DO SLIDER ---
     if (!temVariantes) {
         const slidesImg = document.querySelectorAll('#slider-container img');
         const dots = document.querySelectorAll('.slider-dot');
@@ -179,21 +182,37 @@ const precoInicial = temVariantes ? prod.variants[0].price : 0;
         }
     }
 
-    // --- LÓGICA DE PRODUTOS COM CORES ---
+    // --- LÓGICA DE CORES E BOTÕES ---
     window.mudarCor = function(cor, btn) {
         corSelecionada = cor;
-        document.querySelectorAll('.color-btn').forEach(b => b.classList.replace('border-mm-blue', 'border-gray-200'));
-        btn.classList.add('border-mm-blue');
+        
+        // Limpa todos os botões de cor
+        document.querySelectorAll('.color-btn').forEach(b => {
+            b.classList.remove(...activeClasses);
+            b.classList.add(...inactiveClasses);
+        });
+
+        // Ativa o botão clicado
+        btn.classList.add(...activeClasses);
+        btn.classList.remove(...inactiveClasses);
+
         renderizarTamanhos(variants.filter(v => v.cor === cor));
     };
 
     window.mudarTamanho = function(v, btn) {
         tamanhoSelecionado = v.tamanho;
         precoAtual = v.price;
-        document.querySelectorAll('.size-btn').forEach(b => b.classList.replace('border-mm-blue', 'border-gray-200'));
-        btn.classList.add('border-mm-blue');
+
+        // Limpa todos os botões de tamanho
+        document.querySelectorAll('.size-btn').forEach(b => {
+            b.classList.remove(...activeClasses);
+            b.classList.add(...inactiveClasses);
+        });
+
+        // Ativa o botão clicado
+        btn.classList.add(...activeClasses);
+        btn.classList.remove(...inactiveClasses);
         
-        // No produto com cor, a imagem é trocada diretamente no ID main-img
         const mainImg = document.getElementById('main-img');
         if(mainImg) mainImg.src = v.img;
 
@@ -208,9 +227,12 @@ const precoInicial = temVariantes ? prod.variants[0].price : 0;
         lista.forEach((v, i) => {
             const btn = document.createElement('button');
             btn.innerText = v.tamanho;
-            btn.className = `size-btn px-4 py-2 border-2 rounded-lg font-bold text-xs ${i === 0 ? 'border-mm-blue text-mm-blue bg-blue-50' : 'border-gray-200 text-gray-400'}`;
+            // Estilo inicial inativo
+            btn.className = `size-btn px-4 py-2 border-2 rounded-lg font-bold text-xs transition-all ${inactiveClasses.join(' ')}`;
             btn.onclick = () => window.mudarTamanho(v, btn);
             container.appendChild(btn);
+            
+            // Auto-seleciona o primeiro tamanho da cor
             if(i === 0) window.mudarTamanho(v, btn);
         });
     }
@@ -218,12 +240,15 @@ const precoInicial = temVariantes ? prod.variants[0].price : 0;
     window.atualizarTotal = function() {
         if (!temVariantes) return;
         const qty = parseInt(document.getElementById('qty-input').value) || 1;
-        document.getElementById('display-total').innerText = (precoAtual * qty).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+        const total = (precoAtual * qty).toFixed(2).replace('.', ',');
+        document.getElementById('display-total').innerText = total;
     };
 
     window.enviarCarrinhoFinal = function(event) {
         const qty = parseInt(document.getElementById('qty-input').value) || 1;
         const img = temVariantes ? document.getElementById('main-img').src : document.querySelector('#slider-container img[style*="opacity: 1"]')?.src;
+        
+        // Chamada para a função do seu carrinho.js
         window.adicionarComVariacaoInterna?.(slug, nome, codigo, img, qty, `${corSelecionada} - ${tamanhoSelecionado}`, precoAtual);
         
         const btn = event.currentTarget;
@@ -233,5 +258,9 @@ const precoInicial = temVariantes ? prod.variants[0].price : 0;
         setTimeout(() => { btn.style.backgroundColor = '#25D366'; btn.innerHTML = old; }, 1500);
     };
 
-    if (temVariantes) window.mudarCor(corSelecionada, document.querySelector('.color-btn'));
+    // Inicialização automática
+    if (temVariantes) {
+        const firstBtn = document.querySelector('.color-btn');
+        if(firstBtn) window.mudarCor(corSelecionada, firstBtn);
+    }
 </script>
