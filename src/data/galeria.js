@@ -3,7 +3,7 @@ export const galeriaCategorias = [
     slug: 'ganchos',
     nome: 'Ganchos',
     capa: 'midia/gancho/canaletado/gancho-canaletado-10cm-preto.jpeg',
-    folder: 'gancho/canaletado', // Caminho dentro de public/midia/
+    folder: 'gancho/canaletado',
     linkCatalogo: '/produtos/categoria-ganchos'
   },
   {
