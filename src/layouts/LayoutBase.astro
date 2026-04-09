@@ -107,9 +107,9 @@ const { title } = Astro.props;
         <slot />
     </main>
 
-    <footer class="w-full bg-[#1a1a1a] pt-16 pb-12 mt-12 text-white">
+    <footer class="w-full bg-[#1a1a1a] pt-16 pb-6 mt-12 text-white">
         <div class="container mx-auto px-8 lg:px-24">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-sm">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-sm mb-12">
                 
                 <div class="flex flex-col items-center md:items-start">
                     <a href="/" class="mb-6 transition hover:scale-105">
@@ -155,18 +155,25 @@ const { title } = Astro.props;
                     </ul>
 
                     <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-mm-blue text-white flex items-center justify-center hover:bg-white hover:text-mm-blue transition shadow-md">
+                        <a href="https://www.facebook.com/mmontagens2005" target="_blank" class="w-10 h-10 rounded-full bg-mm-blue text-white flex items-center justify-center hover:bg-white hover:text-mm-blue transition shadow-md">
                             <i class="fab fa-facebook-f text-lg"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-mm-blue text-white flex items-center justify-center hover:bg-white hover:text-mm-blue transition shadow-md">
+                        <a href="https://www.instagram.com/mm_montagens_2005/" target="_blank" class="w-10 h-10 rounded-full bg-mm-blue text-white flex items-center justify-center hover:bg-white hover:text-mm-blue transition shadow-md">
                             <i class="fab fa-instagram text-lg"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-mm-blue text-white flex items-center justify-center hover:bg-white hover:text-mm-blue transition shadow-md">
+                        <a href="https://www.linkedin.com/company/mm-montagens/" target="_blank" class="w-10 h-10 rounded-full bg-mm-blue text-white flex items-center justify-center hover:bg-white hover:text-mm-blue transition shadow-md">
                             <i class="fab fa-linkedin-in text-lg"></i>
                         </a>
                     </div>
                 </div>
 
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] text-gray-500 font-medium uppercase tracking-widest">
+                <p>© 2026 MM Montagens - Todos os direitos reservados.</p>
+                <a href="https://www.linkedin.com/in/matheus-dos-santos26/" target="_blank" class="hover:text-white transition-colors flex items-center gap-2">
+                    Desenvolvido por <span class="text-mm-cyan font-bold">Matheus</span>
+                </a>
             </div>
         </div>
     </footer>
