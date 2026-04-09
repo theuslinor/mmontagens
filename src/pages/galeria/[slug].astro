@@ -1,5 +1,4 @@
 ---
-// src/pages/galeria/[slug].astro
 import LayoutBase from '../../layouts/LayoutBase.astro';
 import { galeriaCategorias } from '../../data/galeria.js';
 import fs from 'node:fs';
@@ -14,32 +13,23 @@ export async function getStaticPaths() {
 
 const { cat } = Astro.props;
 
-// --- LÓGICA MÁGICA: LER MÚLTIPLAS PASTAS ---
 let fotos = [];
-
-// Transformamos o folder em array caso ele seja apenas uma string (garante compatibilidade)
 const pastasParaLer = Array.isArray(cat.folder) ? cat.folder : [cat.folder];
 
 pastasParaLer.forEach(pasta => {
     const diretórioDaMidia = path.join(process.cwd(), 'public', 'midia', pasta);
-    
     try {
         if (fs.existsSync(diretórioDaMidia)) {
             const arquivos = fs.readdirSync(diretórioDaMidia);
             const fotosDaPasta = arquivos
                 .filter(file => /\.(jpg|jpeg|png|webp|avif|gif|svg)$/i.test(file))
                 .map(file => `/midia/${pasta}/${file}`);
-            
-            // Junta as fotos desta pasta com as fotos já encontradas
             fotos = [...fotos, ...fotosDaPasta];
         }
     } catch (error) {
         console.error(`Erro ao ler a pasta ${pasta}:`, error);
     }
 });
-
-// Opcional: Embaralhar as fotos para não ficarem separadas por pasta no grid
-// fotos = fotos.sort(() => Math.random() - 0.5);
 ---
 
 <LayoutBase title={`${cat.nome} - Galeria MM Montagens`}>
@@ -52,7 +42,7 @@ pastasParaLer.forEach(pasta => {
                         <i class="fas fa-arrow-left"></i> Voltar para Galeria
                     </button>
                     <h1 class="text-4xl font-black text-gray-900 uppercase tracking-tighter">{cat.nome}</h1>
-                    <p class="text-gray-500 font-medium italic italic">Mostrando {fotos.length} itens de diversas categorias</p>
+                    <p class="text-gray-500 font-medium italic">Mostrando {fotos.length} itens de diversas categorias</p>
                 </div>
 
                 <a href={cat.linkCatalogo} class="bg-mm-blue hover:bg-mm-darkblue text-white px-8 py-4 rounded-xl font-black uppercase tracking-wide shadow-lg transition-all flex items-center gap-3 w-fit">
@@ -65,7 +55,7 @@ pastasParaLer.forEach(pasta => {
                 {fotos.map((foto, index) => (
                     <div 
                         class="relative aspect-square bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl cursor-zoom-in group transition-all"
-                        onclick={`window.openLightbox('${foto}')`}
+                        onclick={`window.openLightbox(${index})`}
                     >
                         <img 
                             src={foto} 
@@ -84,31 +74,76 @@ pastasParaLer.forEach(pasta => {
 
             {fotos.length === 0 && (
                 <div class="text-center py-20">
-                    <p class="text-gray-400 font-bold uppercase italic">Nenhuma foto encontrada nas pastas selecionadas.</p>
+                    <p class="text-gray-400 font-bold uppercase italic">Nenhuma foto encontrada.</p>
                 </div>
             )}
         </div>
     </section>
 
-    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 hidden items-center justify-center p-4" onclick="window.closeLightbox()">
-        <button class="absolute top-6 right-6 text-white text-4xl"><i class="fas fa-times"></i></button>
-        <img id="lightbox-img" src="" class="max-w-full max-h-full rounded-lg shadow-2xl object-contain" />
-    </div>
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 hidden items-center justify-center select-none">
+        <button onclick="window.closeLightbox()" class="absolute top-6 right-6 text-white text-4xl hover:text-mm-blue z-[110] transition-colors">
+            <i class="fas fa-times"></i>
+        </button>
 
+        <button onclick="window.prevImage(event)" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white text-4xl md:text-6xl z-[110] transition-all">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="relative w-full h-full flex flex-col items-center justify-center p-4 md:p-12" onclick="window.closeLightbox()">
+            <img id="lightbox-img" src="" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl object-contain transition-all duration-300" onclick="event.stopPropagation()" />
+            <div id="lightbox-counter" class="mt-4 text-gray-500 font-bold tracking-widest text-xs uppercase"></div>
+        </div>
+
+        <button onclick="window.nextImage(event)" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white text-4xl md:text-6xl z-[110] transition-all">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
 </LayoutBase>
 
-<script is:inline>
-    // Mesmas funções de abrir e fechar que já funcionam
-    window.openLightbox = function(src) {
-        const lightbox = document.getElementById('lightbox');
-        const img = document.getElementById('lightbox-img');
-        img.src = src;
+<script is:inline define:vars={{ fotos }}>
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    const counter = document.getElementById('lightbox-counter');
+
+    window.openLightbox = function(index) {
+        currentIndex = index;
+        updateLightbox();
         lightbox.classList.replace('hidden', 'flex');
         document.body.style.overflow = 'hidden';
     };
+
     window.closeLightbox = function() {
-        const lightbox = document.getElementById('lightbox');
         lightbox.classList.replace('flex', 'hidden');
         document.body.style.overflow = 'auto';
     };
+
+    window.nextImage = function(e) {
+        if(e) e.stopPropagation();
+        currentIndex = (currentIndex + 1) % fotos.length;
+        updateLightbox();
+    };
+
+    window.prevImage = function(e) {
+        if(e) e.stopPropagation();
+        currentIndex = (currentIndex - 1 + fotos.length) % fotos.length;
+        updateLightbox();
+    };
+
+    function updateLightbox() {
+        img.style.opacity = '0';
+        setTimeout(() => {
+            img.src = fotos[currentIndex];
+            counter.innerText = `${currentIndex + 1} / ${fotos.length}`;
+            img.style.opacity = '1';
+        }, 100);
+    }
+
+    // Navegação via teclado
+    document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('hidden')) return;
+        if (e.key === 'ArrowRight') window.nextImage();
+        if (e.key === 'ArrowLeft') window.prevImage();
+        if (e.key === 'Escape') window.closeLightbox();
+    });
 </script>
