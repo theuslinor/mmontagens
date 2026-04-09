@@ -98,10 +98,10 @@ const rawData = [
         codigo: 'GPB-440',
         img: '/midia/gancho/gancho-gondola/gancho-440mm-25cm-prateado',
         variants: [
-          { cor: 'BRANCO', tamanho: '15 CM', price: 2.10, img: '/midia/gancho/gancho-gondola/gancho-canaletado-15cm-440mm-preto' },
+          { cor: 'BRANCO', tamanho: '15 CM', price: 2.10, img: '/midia/gancho/gancho-gondola/gancho-canaletado-15cm-440mm-branco' },
           { cor: 'PRETO', tamanho: '15 CM', price: 2.10, img: '/midia/gancho/gancho-gondola/gancho-canaletado-15cm-440mm-preto' },
-          { cor: 'BRANCO', tamanho: '20 CM', price: 2.50, img: '/midia/gancho/gancho-gondola/gancho-canaletado-20cm-440mm-prata' },
-          { cor: 'PRETO', tamanho: '20 CM', price: 2.50, img: '/midia/gancho/gancho-gondola/gancho-canaletado-20cm-440mm-prata' },
+          { cor: 'BRANCO', tamanho: '20 CM', price: 2.50, img: '/midia/gancho/gancho-gondola/gancho-canaletado-20cm-440mm-branco' },
+          { cor: 'PRETO', tamanho: '20 CM', price: 2.50, img: '/midia/gancho/gancho-gondola/gancho-canaletado-20cm-440mm-preto' },
           { cor: 'BRANCO', tamanho: '25 CM', price: 2.80, img: '/midia/gancho/gancho-gondola/gancho-440mm-25cm-prateado' },
           { cor: 'PRETO', tamanho: '25 CM', price: 2.80, img: '/midia/gancho/gancho-gondola/gancho-440mm-25cm-prateado' },
         ]
