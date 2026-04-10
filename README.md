@@ -6,7 +6,7 @@ O projeto foi desenvolvido com foco em **performance**, **experiência do usuár
 
 ---
 
-## 🔗 Link do Projeto
+## 🔗 Link do Site
 👉 https://www.mmontagens.com.br/
 
 ---
