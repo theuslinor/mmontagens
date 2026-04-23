@@ -159,7 +159,7 @@ window.enviarParaWhatsApp = function() {
         texto += `*VALOR TOTAL ESTIMADO: ${valorTotalMsg}*%0A%0A`;
         texto += "Aguardamos o retorno com as condições de frete e faturamento.";
 
-        window.open(`https://wa.me/5511998038196?text=${texto}`, "_blank");
+        window.open(`https://wa.me/5511915287830?text=${texto}`, "_blank");
 
         btn.disabled = false;
         btn.innerHTML = originalContent;
